@@ -10,4 +10,5 @@ build:
 
 .PHONY: run
 run:
-	docker run -it --rm --name nvim-container -v $(pwd):/workspace nvim-docker
+	docker run -it --rm --name nvim-container -v $(shell pwd):/workspace nvim-docker
+
