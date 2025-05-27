@@ -3,10 +3,7 @@ all: build
 
 .PHONY: build
 build:
-	rm -rf nvim-config
-	cp -r ~/.config/nvim ./nvim-config
 	docker build . -t nvim-docker
-	rm -rf nvim-config
 
 .PHONY: run
 run:

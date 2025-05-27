@@ -18,11 +18,8 @@ RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-lin
     mv nvim-linux-arm64 /opt/nvim && \
     ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
 
-# Copy Neovim config into container (for build-time plugin install)
+# Copy Neovim config into container
 COPY nvim-config/ /root/.config/nvim/
-
-# Run Lazy.nvim sync to install plugins during build
-RUN nvim --headless "+Lazy! sync" +qa
 
 WORKDIR /workspace
 CMD ["bash"]
