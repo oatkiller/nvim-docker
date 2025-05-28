@@ -4,5 +4,5 @@
 --   root_markers = { 'tsconfig.json' },
 -- })
 
-vim.lsp.enable('typescript') 
+vim.lsp.enable('ts_ls') 
 print("TypeScript LSP enabled")
