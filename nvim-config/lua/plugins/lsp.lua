@@ -1,6 +1,6 @@
 vim.lsp.config('typescript',{
   cmd = { 'typescript-language-server', '--stdio' },
-  filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact', 'javascript.jsx' },
+  filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   root_markers = { 'tsconfig.json' },
 })
 
