@@ -59,8 +59,6 @@ local function on_attach(client, bufnr)
   vim.notify("LSP [" .. client.name .. "] attached to buffer " .. bufnr)
 end
 
-vim.lsp.config("ts_ls", {
+return {
   on_attach = on_attach,
-})
-
-vim.lsp.enable('ts_ls')
+}

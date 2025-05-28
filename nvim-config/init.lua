@@ -1,1 +1,1 @@
-require('plugins.lsp')
+vim.lsp.enable('ts_ls')
