@@ -1,0 +1,8 @@
+# ~/.local/bin/nvim (make sure this is in your $PATH)
+#!/usr/bin/env bash
+
+docker run --rm -it \
+  --name nvim-docker \
+  -v "$PWD":/workspace \
+  -w /workspace \
+  nvim-docker nvim "$@"
