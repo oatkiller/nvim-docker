@@ -24,6 +24,9 @@ RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-lin
 # Copy Neovim config into container
 COPY nvim-config/ /root/.config/nvim/
 
+# Install nvim-lspconfig plugin
+RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/nvim/start/nvim-lspconfig
+
 WORKDIR /workspace
 CMD ["bash"]
 
