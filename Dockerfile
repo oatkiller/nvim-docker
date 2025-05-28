@@ -4,7 +4,7 @@ FROM ubuntu:24.04
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     curl unzip git ripgrep fd-find tmux build-essential libtool libtool-bin \
-    ca-certificates fzf bat golang-go && \
+    ca-certificates bat golang-go && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Node.js LTS version
@@ -30,13 +30,13 @@ COPY nvim-config/ /root/.config/nvim/
 # Install nvim-lspconfig plugin
 RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/nvim/start/nvim-lspconfig
 
-
-# install fzf vim plugin
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git /root/.config/nvim/pack/nvim/start/fzf
+# install fzf binary and vim plugin
+RUN git clone https://github.com/junegunn/fzf.git /root/.config/nvim/pack/nvim/start/fzf \
+    && cd /root/.config/nvim/pack/nvim/start/fzf \
+    && make install
 
 # Install fzf.vim vim plugin
 RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/nvim/start/fzf.vim
-
 
 WORKDIR /workspace
 CMD ["bash"]
