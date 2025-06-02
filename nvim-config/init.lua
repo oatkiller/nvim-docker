@@ -1,3 +1,5 @@
+require('cmp_config')
+
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('tailwindcss')
 
