@@ -68,7 +68,7 @@ fi
 # fzf and fzf.vim
 mkdir -p ~/.config/nvim/pack/fzf/start
 if [ ! -d ~/.config/nvim/pack/fzf/start/fzf ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/nvim/pack/fzf/start/fzf
+  git clone https://github.com/junegunn/fzf.git ~/.config/nvim/pack/fzf/start/fzf
   ~/.config/nvim/pack/fzf/start/fzf/install --bin
 fi
 if [ ! -d ~/.config/nvim/pack/fzf/start/fzf.vim ]; then

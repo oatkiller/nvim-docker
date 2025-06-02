@@ -43,7 +43,7 @@ RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/l
 
 # fzf and fzf.vim
 RUN mkdir -p /root/.config/nvim/pack/fzf/start
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git /root/.config/nvim/pack/fzf/start/fzf
+RUN git clone https://github.com/junegunn/fzf.git /root/.config/nvim/pack/fzf/start/fzf
 RUN cd /root/.config/nvim/pack/fzf/start/fzf && make install
 RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/start/fzf.vim
 
