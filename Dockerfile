@@ -27,38 +27,25 @@ RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-lin
 # Copy Neovim config into container
 COPY nvim-config/ /root/.config/nvim/
 
-# Install nvim-lspconfig plugin
-RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/nvim/start/nvim-lspconfig
+# nvim-cmp and sources
+RUN mkdir -p /root/.config/nvim/pack/cmp/start
+RUN git clone https://github.com/hrsh7th/nvim-cmp /root/.config/nvim/pack/cmp/start/nvim-cmp
+RUN git clone https://github.com/hrsh7th/cmp-nvim-lsp /root/.config/nvim/pack/cmp/start/cmp-nvim-lsp
+RUN git clone https://github.com/hrsh7th/cmp-buffer /root/.config/nvim/pack/cmp/start/cmp-buffer
+RUN git clone https://github.com/hrsh7th/cmp-path /root/.config/nvim/pack/cmp/start/cmp-path
+RUN git clone https://github.com/hrsh7th/cmp-cmdline /root/.config/nvim/pack/cmp/start/cmp-cmdline
+RUN git clone https://github.com/hrsh7th/cmp-vsnip /root/.config/nvim/pack/cmp/start/cmp-vsnip
+RUN git clone https://github.com/petertriho/cmp-git /root/.config/nvim/pack/cmp/start/cmp-git
 
-# install fzf binary and vim plugin
-RUN git clone https://github.com/junegunn/fzf.git /root/.config/nvim/pack/nvim/start/fzf \
-    && cd /root/.config/nvim/pack/nvim/start/fzf \
-    && make install
+# lspconfig
+RUN mkdir -p /root/.config/nvim/pack/lsp/start
+RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/lsp/start/nvim-lspconfig
 
-# Install fzf.vim vim plugin
-RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/nvim/start/fzf.vim
+# fzf and fzf.vim
+RUN mkdir -p /root/.config/nvim/pack/fzf/start
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git /root/.config/nvim/pack/fzf/start/fzf
+RUN cd /root/.config/nvim/pack/fzf/start/fzf && make install
+RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/start/fzf.vim
 
-# Install nvim-cmp plugin
-RUN git clone https://github.com/hrsh7th/nvim-cmp /root/.config/nvim/pack/nvim/start/nvim-cmp
-
-# Clone cmp-nvim-lsp
-RUN git clone https://github.com/hrsh7th/cmp-nvim-lsp /root/.config/nvim/pack/nvim/start/cmp-nvim-lsp
-
-# Clone cmp-buffer
-RUN git clone https://github.com/hrsh7th/cmp-buffer /root/.config/nvim/pack/nvim/start/cmp-buffer
-
-# Clone cmp-path
-RUN git clone https://github.com/hrsh7th/cmp-path /root/.config/nvim/pack/nvim/start/cmp-path
-
-# Clone cmp-cmdline
-RUN git clone https://github.com/hrsh7th/cmp-cmdline /root/.config/nvim/pack/nvim/start/cmp-cmdline
-
-# Clone cmp-vsnip
-RUN git clone https://github.com/hrsh7th/cmp-vsnip /root/.config/nvim/pack/nvim/start/cmp-vsnip
-
-# Optional: Git completion source for gitcommit
-RUN git clone https://github.com/petertriho/cmp-git /root/.config/nvim/pack/nvim/start/cmp-git
-
--cmpDIR /workspace
 CMD ["bash"]
 
