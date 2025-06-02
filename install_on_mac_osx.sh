@@ -20,6 +20,18 @@ if [ ${#MISSING[@]} -ne 0 ]; then
   exit 1
 fi
 
+# Check Node.js version (require >=20)
+NODE_VERSION=$(node -v | sed 's/v//;s/\..*//')
+if [ "$NODE_VERSION" -lt 20 ]; then
+  echo "Node.js version >= 20 is required. Please upgrade:"
+  echo "  brew upgrade node"
+  exit 1
+fi
+
+# Install global npm packages for LSPs
+echo "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server"
+npm install -g typescript-language-server typescript @tailwindcss/language-server
+
 # Check if ~/.config/nvim exists
 if [ -d "$HOME/.config/nvim" ]; then
   echo "[WARNING] ~/.config/nvim already exists."
