@@ -38,6 +38,27 @@ RUN git clone https://github.com/junegunn/fzf.git /root/.config/nvim/pack/nvim/s
 # Install fzf.vim vim plugin
 RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/nvim/start/fzf.vim
 
-WORKDIR /workspace
+# Install nvim-cmp plugin
+RUN git clone https://github.com/hrsh7th/nvim-cmp /root/.config/nvim/pack/nvim/start/nvim-cmp
+
+# Clone cmp-nvim-lsp
+RUN git clone https://github.com/hrsh7th/cmp-nvim-lsp /root/.config/nvim/pack/nvim/start/cmp-nvim-lsp
+
+# Clone cmp-buffer
+RUN git clone https://github.com/hrsh7th/cmp-buffer /root/.config/nvim/pack/nvim/start/cmp-buffer
+
+# Clone cmp-path
+RUN git clone https://github.com/hrsh7th/cmp-path /root/.config/nvim/pack/nvim/start/cmp-path
+
+# Clone cmp-cmdline
+RUN git clone https://github.com/hrsh7th/cmp-cmdline /root/.config/nvim/pack/nvim/start/cmp-cmdline
+
+# Clone cmp-vsnip
+RUN git clone https://github.com/hrsh7th/cmp-vsnip /root/.config/nvim/pack/nvim/start/cmp-vsnip
+
+# Optional: Git completion source for gitcommit
+RUN git clone https://github.com/petertriho/cmp-git /root/.config/nvim/pack/nvim/start/cmp-git
+
+-cmpDIR /workspace
 CMD ["bash"]
 

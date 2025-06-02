@@ -52,4 +52,39 @@ if [ ! -d ~/.config/nvim/pack/nvim/start/fzf.vim ]; then
   git clone https://github.com/junegunn/fzf.vim ~/.config/nvim/pack/nvim/start/fzf.vim
 fi
 
+# Install nvim-cmp plugin
+if [ ! -d ~/.config/nvim/pack/nvim/start/nvim-cmp ]; then
+  git clone https://github.com/hrsh7th/nvim-cmp ~/.config/nvim/pack/nvim/start/nvim-cmp
+fi
+
+# Install cmp-nvim-lsp plugin
+if [ ! -d ~/.config/nvim/pack/nvim/start/cmp-nvim-lsp ]; then
+  git clone https://github.com/hrsh7th/cmp-nvim-lsp ~/.config/nvim/pack/nvim/start/cmp-nvim-lsp
+fi
+
+# Install cmp-buffer plugin
+if [ ! -d ~/.config/nvim/pack/nvim/start/cmp-buffer ]; then
+  git clone https://github.com/hrsh7th/cmp-buffer ~/.config/nvim/pack/nvim/start/cmp-buffer
+fi
+
+# Install cmp-path plugin
+if [ ! -d ~/.config/nvim/pack/nvim/start/cmp-path ]; then
+  git clone https://github.com/hrsh7th/cmp-path ~/.config/nvim/pack/nvim/start/cmp-path
+fi
+
+# Install cmp-cmdline plugin
+if [ ! -d ~/.config/nvim/pack/nvim/start/cmp-cmdline ]; then
+  git clone https://github.com/hrsh7th/cmp-cmdline ~/.config/nvim/pack/nvim/start/cmp-cmdline
+fi
+
+# Install cmp-vsnip plugin
+if [ ! -d ~/.config/nvim/pack/nvim/start/cmp-vsnip ]; then
+  git clone https://github.com/hrsh7th/cmp-vsnip ~/.config/nvim/pack/nvim/start/cmp-vsnip
+fi
+
+# Optional: Git completion source for gitcommit
+if [ ! -d ~/.config/nvim/pack/nvim/start/cmp-git ]; then
+  git clone https://github.com/petertriho/cmp-git ~/.config/nvim/pack/nvim/start/cmp-git
+fi
+
 echo "Neovim config and plugins installed!" 
