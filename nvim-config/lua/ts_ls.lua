@@ -1,16 +1,18 @@
 local function on_attach(client, bufnr)
-  -- Replicate built-in ts_ls :LspTypescriptSourceAction logic
-  if client.name == "ts_ls" then
-    vim.api.nvim_buf_create_user_command(bufnr, 'LspTypescriptSourceAction', function()
-      local kinds = client.server_capabilities.codeActionProvider
-        and client.server_capabilities.codeActionProvider.codeActionKinds
-        or {}
-      local source_actions = vim.tbl_filter(function(action)
-        return vim.startswith(action, 'source.')
-      end, kinds)
-      vim.lsp.buf.code_action({ context = { only = source_actions } })
-    end, { desc = "Run source.* code actions (e.g. organize imports)" })
-  end
+
+  -- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
+  -- `vim.lsp.buf.code_action()` if specified in `context.only`.
+  vim.api.nvim_buf_create_user_command(0, 'LspTypescriptSourceAction', function()
+    local source_actions = vim.tbl_filter(function(action)
+      return vim.startswith(action, 'source.')
+    end, client.server_capabilities.codeActionProvider.codeActionKinds)
+
+    vim.lsp.buf.code_action({
+      context = {
+        only = source_actions,
+      },
+    })
+  end, {})
 
   local map = function(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
@@ -59,6 +61,6 @@ local function on_attach(client, bufnr)
   vim.notify("LSP [" .. client.name .. "] attached to buffer " .. bufnr)
 end
 
-return {
+vim.lsp.config('ts_ls', {
   on_attach = on_attach,
-}
+})

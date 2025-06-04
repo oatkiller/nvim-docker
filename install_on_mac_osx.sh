@@ -32,15 +32,28 @@ fi
 echo "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server"
 npm install -g typescript-language-server typescript @tailwindcss/language-server
 
+# Parse arguments for -f or --force
+FORCE=0
+for arg in "$@"; do
+  if [ "$arg" = "-f" ] || [ "$arg" = "--force" ]; then
+    FORCE=1
+  fi
+done
+
 # Check if ~/.config/nvim exists
 if [ -d "$HOME/.config/nvim" ]; then
-  echo "[WARNING] ~/.config/nvim already exists."
-  echo "Running this script will overwrite your existing Neovim config."
-  echo "If you want to keep your current config, move or delete it first."
-  echo "Sample commands:"
-  echo "  mv ~/.config/nvim ~/.config/nvim.bak"
-  echo "  rm -rf ~/.config/nvim"
-  exit 1
+  if [ $FORCE -eq 1 ]; then
+    echo "[FORCE] Deleting existing ~/.config/nvim..."
+    rm -rf "$HOME/.config/nvim"
+  else
+    echo "[WARNING] ~/.config/nvim already exists."
+    echo "Running this script will overwrite your existing Neovim config."
+    echo "If you want to keep your current config, move or delete it first."
+    echo "Sample commands:"
+    echo "  mv ~/.config/nvim ~/.config/nvim.bak"
+    echo "  rm -rf ~/.config/nvim"
+    exit 1
+  fi
 fi
 
 # Copy nvim-config to ~/.config/nvim
