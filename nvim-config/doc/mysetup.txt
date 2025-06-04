@@ -1,0 +1,9 @@
+*mysetup.txt*    My Neovim Docker Setup
+
+My Neovim Docker Setup
+======================
+
+Hello, world! This is a placeholder for your custom Neovim Docker setup documentation.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl: 

@@ -38,3 +38,11 @@ wk.setup({
 vim.keymap.set('n', '<leader>?', function()
   wk.show()
 end, { desc = 'Show which-key' })
+
+-- Automatically generate helptags for the doc directory on startup
+local doc_path = vim.fn.stdpath('config') .. '/doc'
+if vim.fn.isdirectory(doc_path) == 1 then
+  vim.cmd('silent! helptags ' .. doc_path)
+else
+  vim.notify('Warning: Doc directory not found at ' .. doc_path, vim.log.levels.WARN)
+end
