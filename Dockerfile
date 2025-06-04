@@ -47,5 +47,9 @@ RUN git clone https://github.com/junegunn/fzf.git /root/.config/nvim/pack/fzf/st
 RUN cd /root/.config/nvim/pack/fzf/start/fzf && make install
 RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/start/fzf.vim
 
+# which-key.nvim
+RUN mkdir -p /root/.config/nvim/pack/which-key/start
+RUN git clone https://github.com/folke/which-key.nvim /root/.config/nvim/pack/which-key/start/which-key.nvim
+
 CMD ["bash"]
 

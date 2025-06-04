@@ -87,4 +87,10 @@ if [ ! -d ~/.config/nvim/pack/fzf/start/fzf.vim ]; then
   git clone https://github.com/junegunn/fzf.vim ~/.config/nvim/pack/fzf/start/fzf.vim
 fi
 
+# which-key.nvim
+mkdir -p ~/.config/nvim/pack/which-key/start
+if [ ! -d ~/.config/nvim/pack/which-key/start/which-key.nvim ]; then
+  git clone https://github.com/folke/which-key.nvim ~/.config/nvim/pack/which-key/start/which-key.nvim
+fi
+
 echo "Neovim config and plugins installed!" 

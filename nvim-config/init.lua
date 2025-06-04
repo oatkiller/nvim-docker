@@ -27,3 +27,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- See https://github.com/neovim/neovim/blob/master/runtime/lua/vim/_defaults.lua
+
+-- which-key.nvim setup
+local wk = require('which-key')
+wk.setup({
+  icons = { mappings = false },
+  preset = 'classic',
+})
+
+vim.keymap.set('n', '<leader>?', function()
+  wk.show()
+end, { desc = 'Show which-key' })
