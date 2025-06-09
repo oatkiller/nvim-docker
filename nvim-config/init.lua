@@ -47,3 +47,5 @@ if vim.fn.isdirectory(doc_path) == 1 then
 else
   vim.notify('Warning: Doc directory not found at ' .. doc_path, vim.log.levels.WARN)
 end
+
+vim.g.tsc_makeprg = 'npx tsc -b'
