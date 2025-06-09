@@ -109,6 +109,12 @@ if [ ! -d ~/.config/nvim/pack/none-ls/start/none-ls.nvim ]; then
   git clone https://github.com/nvimtools/none-ls.nvim ~/.config/nvim/pack/none-ls/start/none-ls.nvim
 fi
 
+# none-ls-extras (native package management)
+mkdir -p ~/.config/nvim/pack/none-ls-extras/start
+if [ ! -d ~/.config/nvim/pack/none-ls-extras/start/none-ls-extras.nvim ]; then
+  git clone https://github.com/nvimtools/none-ls-extras.nvim ~/.config/nvim/pack/none-ls-extras/start/none-ls-extras.nvim
+fi
+
 # Custom none-ls config (native package management)
 mkdir -p ~/.config/nvim/pack/none-ls-config/start/none-ls-config/plugin
 cp ./pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua ~/.config/nvim/pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua
