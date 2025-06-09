@@ -110,8 +110,8 @@ if [ ! -d ~/.config/nvim/pack/none-ls/start/none-ls.nvim ]; then
 fi
 
 # Custom none-ls config (native package management)
-mkdir -p ~/.config/nvim/pack/none-ls-config/start
-cp ./pack/none-ls-config/start/none_ls.lua ~/.config/nvim/pack/none-ls-config/start/none_ls.lua
+mkdir -p ~/.config/nvim/pack/none-ls-config/start/none-ls-config/plugin
+cp ./pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua ~/.config/nvim/pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua
 
 # which-key.nvim
 mkdir -p ~/.config/nvim/pack/which-key/start
