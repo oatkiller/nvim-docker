@@ -63,5 +63,8 @@ RUN git clone https://github.com/nvimtools/none-ls-extras.nvim /root/.config/nvi
 # Copy custom none_ls.lua config to plugin directory
 COPY pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua /root/.config/nvim/pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua
 
+# Install Prettier and ESLint_D globally
+RUN npm install -g prettier eslint_d
+
 CMD ["bash"]
 

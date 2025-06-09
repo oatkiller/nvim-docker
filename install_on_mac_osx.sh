@@ -29,8 +29,8 @@ if [ "$NODE_VERSION" -lt 20 ]; then
 fi
 
 # Install global npm packages for LSPs
-echo "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server"
-npm install -g typescript-language-server typescript @tailwindcss/language-server
+echo "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server, prettier, eslint_d"
+npm install -g typescript-language-server typescript @tailwindcss/language-server prettier eslint_d
 
 # Parse arguments for -f or --force
 FORCE=0

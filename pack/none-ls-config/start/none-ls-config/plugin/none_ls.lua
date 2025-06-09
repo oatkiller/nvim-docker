@@ -1,4 +1,3 @@
-print("Loaded none_ls.lua (with none-ls-extras)")
 local null_ls = require("null-ls")
 
 null_ls.setup({
