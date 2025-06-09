@@ -3,14 +3,8 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
   sources = {
-    require("none-ls.diagnostics.eslint_d").with({
-      command = "npx",
-      args = { "eslint_d", "-" },
-    }),
-    null_ls.builtins.formatting.prettier.with({
-      command = "npx",
-      args = { "prettier", "--stdin-filepath", "$FILENAME" },
-    }),
+    require("none-ls.diagnostics.eslint_d"),
+    null_ls.builtins.formatting.prettier,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
