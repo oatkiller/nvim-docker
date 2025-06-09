@@ -100,6 +100,19 @@ if [ ! -d ~/.config/nvim/pack/fzf/start/fzf.vim ]; then
   git clone https://github.com/junegunn/fzf.vim ~/.config/nvim/pack/fzf/start/fzf.vim
 fi
 
+# none-ls and plenary (native package management)
+mkdir -p ~/.config/nvim/pack/none-ls/start
+if [ ! -d ~/.config/nvim/pack/none-ls/start/plenary.nvim ]; then
+  git clone https://github.com/nvim-lua/plenary.nvim ~/.config/nvim/pack/none-ls/start/plenary.nvim
+fi
+if [ ! -d ~/.config/nvim/pack/none-ls/start/none-ls.nvim ]; then
+  git clone https://github.com/nvimtools/none-ls.nvim ~/.config/nvim/pack/none-ls/start/none-ls.nvim
+fi
+
+# Custom none-ls config (native package management)
+mkdir -p ~/.config/nvim/pack/none-ls-config/start
+cp ./pack/none-ls-config/start/none_ls.lua ~/.config/nvim/pack/none-ls-config/start/none_ls.lua
+
 # which-key.nvim
 mkdir -p ~/.config/nvim/pack/which-key/start
 if [ ! -d ~/.config/nvim/pack/which-key/start/which-key.nvim ]; then

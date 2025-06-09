@@ -51,5 +51,13 @@ RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/st
 RUN mkdir -p /root/.config/nvim/pack/which-key/start
 RUN git clone https://github.com/folke/which-key.nvim /root/.config/nvim/pack/which-key/start/which-key.nvim
 
+# none-ls and plenary (native package management)
+RUN mkdir -p /root/.config/nvim/pack/none-ls/start
+RUN git clone https://github.com/nvim-lua/plenary.nvim /root/.config/nvim/pack/none-ls/start/plenary.nvim
+RUN git clone https://github.com/nvimtools/none-ls.nvim /root/.config/nvim/pack/none-ls/start/none-ls.nvim
+
+# Copy custom none_ls.lua config
+COPY pack/none-ls-config/start/none_ls.lua /root/.config/nvim/pack/none-ls-config/start/none_ls.lua
+
 CMD ["bash"]
 
