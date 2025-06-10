@@ -51,6 +51,11 @@ RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/st
 RUN mkdir -p /root/.config/nvim/pack/which-key/start
 RUN git clone https://github.com/folke/which-key.nvim /root/.config/nvim/pack/which-key/start/which-key.nvim
 
+# nerdtree
+RUN mkdir -p /root/.config/nvim/pack/nerdtree/start
+RUN git clone https://github.com/preservim/nerdtree.git /root/.config/nvim/pack/nerdtree/start/nerdtree
+RUN nvim -u NONE --headless -c "helptags /root/.config/nvim/pack/nerdtree/start/nerdtree/doc" -c q
+
 # none-ls and plenary (native package management)
 RUN mkdir -p /root/.config/nvim/pack/none-ls/start
 RUN git clone https://github.com/nvim-lua/plenary.nvim /root/.config/nvim/pack/none-ls/start/plenary.nvim

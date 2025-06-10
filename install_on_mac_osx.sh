@@ -125,4 +125,11 @@ if [ ! -d ~/.config/nvim/pack/which-key/start/which-key.nvim ]; then
   git clone https://github.com/folke/which-key.nvim ~/.config/nvim/pack/which-key/start/which-key.nvim
 fi
 
+# nerdtree
+mkdir -p ~/.config/nvim/pack/nerdtree/start
+if [ ! -d ~/.config/nvim/pack/nerdtree/start/nerdtree ]; then
+    git clone https://github.com/preservim/nerdtree.git ~/.config/nvim/pack/nerdtree/start/nerdtree
+    nvim -u NONE --headless -c "helptags ~/.config/nvim/pack/nerdtree/start/nerdtree/doc" -c q
+fi
+
 echo "Neovim config and plugins installed!" 
