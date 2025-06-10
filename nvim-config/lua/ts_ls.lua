@@ -1,3 +1,5 @@
+local lspconfig = require('lspconfig')
+
 local function on_attach(client, bufnr)
 
   -- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
@@ -61,6 +63,44 @@ local function on_attach(client, bufnr)
   vim.notify("LSP [" .. client.name .. "] attached to buffer " .. bufnr)
 end
 
-vim.lsp.config('ts_ls', {
+local function rename_file()
+  local source_file, target_file
+  vim.ui.input({
+    prompt = "Source : ",
+    completion = "file",
+    default = vim.api.nvim_buf_get_name(0)
+  }, function(input)
+    source_file = input
+  end)
+  vim.ui.input({
+    prompt = "Target : ",
+    completion = "file",
+    default = source_file
+  }, function(input)
+    target_file = input
+  end)
+  local params = {
+    command = "_typescript.applyRenameFile",
+    arguments = {
+      {
+        sourceUri = source_file,
+        targetUri = target_file,
+      },
+    },
+    title = ""
+  }
+  vim.lsp.util.rename(source_file, target_file)
+  vim.lsp.buf.execute_command(params)
+end
+
+-- Use lspconfig's setup function for ts_ls.
+-- This will merge nvim-lspconfig's default capabilities with our custom settings.
+lspconfig.ts_ls.setup({
   on_attach = on_attach,
+  commands = {
+    LspRenameFile = {
+      rename_file,
+      description = "Rename File and Update Imports"
+    },
+  }
 })

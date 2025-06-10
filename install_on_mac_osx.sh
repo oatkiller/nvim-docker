@@ -139,5 +139,15 @@ fi
 mkdir -p ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua
 cp ./pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua
 
+# nvim-lsp-file-operations
+mkdir -p ~/.config/nvim/pack/lsp-file-ops/start
+if [ ! -d ~/.config/nvim/pack/lsp-file-ops/start/nvim-lsp-file-operations ]; then
+  git clone https://github.com/antosha417/nvim-lsp-file-operations.git ~/.config/nvim/pack/lsp-file-ops/start/nvim-lsp-file-operations
+fi
+
+# Custom lsp-file-ops config (native package management)
+mkdir -p ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua
+cp ./pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua
+
 
 echo "Neovim config and plugins installed!" 

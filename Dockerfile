@@ -73,5 +73,12 @@ COPY pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua /root/.confi
 # Install Prettier and ESLint_D globally
 RUN npm install -g prettier eslint_d
 
+# nvim-lsp-file-operations
+RUN mkdir -p /root/.config/nvim/pack/lsp-file-ops/start
+RUN git clone https://github.com/antosha417/nvim-lsp-file-operations.git /root/.config/nvim/pack/lsp-file-ops/start/nvim-lsp-file-operations
+
+# Copy custom configs
+COPY pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua /root/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua
+
 CMD ["bash"]
 
