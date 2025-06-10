@@ -9,6 +9,17 @@ require('lsp-file-ops-config')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('tailwindcss')
 
+-- Modern swapfile and persistence configuration
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = true
+
+local undodir = vim.fn.stdpath('data') .. '/undodir'
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, 'p')
+end
+vim.o.undodir = undodir
+
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
