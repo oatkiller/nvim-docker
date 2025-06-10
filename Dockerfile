@@ -51,10 +51,11 @@ RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/st
 RUN mkdir -p /root/.config/nvim/pack/which-key/start
 RUN git clone https://github.com/folke/which-key.nvim /root/.config/nvim/pack/which-key/start/which-key.nvim
 
-# nerdtree
-RUN mkdir -p /root/.config/nvim/pack/nerdtree/start
-RUN git clone https://github.com/preservim/nerdtree.git /root/.config/nvim/pack/nerdtree/start/nerdtree
-RUN nvim -u NONE --headless -c "helptags /root/.config/nvim/pack/nerdtree/start/nerdtree/doc" -c q
+# nvim-tree.lua
+RUN mkdir -p /root/.config/nvim/pack/nvim-tree/start
+RUN git clone https://github.com/nvim-tree/nvim-tree.lua.git /root/.config/nvim/pack/nvim-tree/start/nvim-tree.lua
+RUN git clone https://github.com/nvim-tree/nvim-web-devicons.git /root/.config/nvim/pack/nvim-tree/start/nvim-web-devicons
+RUN nvim -u NONE --headless -c "helptags /root/.config/nvim/pack/nvim-tree/start/nvim-tree.lua/doc" -c q
 
 # none-ls and plenary (native package management)
 RUN mkdir -p /root/.config/nvim/pack/none-ls/start
@@ -65,8 +66,9 @@ RUN git clone https://github.com/nvimtools/none-ls.nvim /root/.config/nvim/pack/
 RUN mkdir -p /root/.config/nvim/pack/none-ls-extras/start
 RUN git clone https://github.com/nvimtools/none-ls-extras.nvim /root/.config/nvim/pack/none-ls-extras/start/none-ls-extras.nvim
 
-# Copy custom none_ls.lua config to plugin directory
+# Copy custom configs
 COPY pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua /root/.config/nvim/pack/none-ls-config/start/none-ls-config/plugin/none_ls.lua
+COPY pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua /root/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua
 
 # Install Prettier and ESLint_D globally
 RUN npm install -g prettier eslint_d

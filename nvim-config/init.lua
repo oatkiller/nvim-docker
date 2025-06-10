@@ -1,5 +1,9 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require('cmp_config')
 require('ts_ls')
+require('nvim-tree-config')
 
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('tailwindcss')
@@ -34,6 +38,10 @@ local wk = require('which-key')
 wk.setup({
   icons = { mappings = false },
   preset = 'classic',
+})
+
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {
+  desc = "Toggle file explorer"
 })
 
 vim.keymap.set('n', '<leader>?', function()

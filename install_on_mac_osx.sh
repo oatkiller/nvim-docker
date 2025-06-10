@@ -125,11 +125,19 @@ if [ ! -d ~/.config/nvim/pack/which-key/start/which-key.nvim ]; then
   git clone https://github.com/folke/which-key.nvim ~/.config/nvim/pack/which-key/start/which-key.nvim
 fi
 
-# nerdtree
-mkdir -p ~/.config/nvim/pack/nerdtree/start
-if [ ! -d ~/.config/nvim/pack/nerdtree/start/nerdtree ]; then
-    git clone https://github.com/preservim/nerdtree.git ~/.config/nvim/pack/nerdtree/start/nerdtree
-    nvim -u NONE --headless -c "helptags ~/.config/nvim/pack/nerdtree/start/nerdtree/doc" -c q
+# nvim-tree.lua
+mkdir -p ~/.config/nvim/pack/nvim-tree/start
+if [ ! -d ~/.config/nvim/pack/nvim-tree/start/nvim-tree.lua ]; then
+  git clone https://github.com/nvim-tree/nvim-tree.lua.git ~/.config/nvim/pack/nvim-tree/start/nvim-tree.lua
+  nvim -u NONE --headless -c "helptags ~/.config/nvim/pack/nvim-tree/start/nvim-tree.lua/doc" -c q
 fi
+if [ ! -d ~/.config/nvim/pack/nvim-tree/start/nvim-web-devicons ]; then
+  git clone https://github.com/nvim-tree/nvim-web-devicons.git ~/.config/nvim/pack/nvim-tree/start/nvim-web-devicons
+fi
+
+# Custom nvim-tree config (native package management)
+mkdir -p ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua
+cp ./pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua
+
 
 echo "Neovim config and plugins installed!" 
