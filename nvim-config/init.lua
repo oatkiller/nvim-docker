@@ -43,6 +43,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+require("CopilotChat").setup()
+
 -- See https://github.com/neovim/neovim/blob/master/runtime/lua/vim/_defaults.lua
 
 -- which-key.nvim setup

@@ -149,5 +149,10 @@ fi
 mkdir -p ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua
 cp ./pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua
 
+# CopilotChat.nvim
+mkdir -p ~/.config/nvim/pack/copilot/start
+if [ ! -d ~/.config/nvim/pack/copilot/start/CopilotChat.nvim ]; then
+  git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git ~/.config/nvim/pack/copilot/start/CopilotChat.nvim
+fi
 
 echo "Neovim config and plugins installed!" 

@@ -77,6 +77,10 @@ RUN npm install -g prettier eslint_d
 RUN mkdir -p /root/.config/nvim/pack/lsp-file-ops/start
 RUN git clone https://github.com/antosha417/nvim-lsp-file-operations.git /root/.config/nvim/pack/lsp-file-ops/start/nvim-lsp-file-operations
 
+# CopilotChat.nvim
+RUN mkdir -p /root/.config/nvim/pack/copilot/start
+RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.config/nvim/pack/copilot/start/CopilotChat.nvim
+
 # Copy custom configs
 COPY pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua /root/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua
 
