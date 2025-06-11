@@ -61,7 +61,8 @@ mkdir -p ~/.config/nvim
 cp -R ./nvim-config/* ~/.config/nvim/
 
 # nvim-cmp and sources
-mkdir -p ~/.config/nvim/pack/cmp/start
+mkdir -p ~/.config/nvim/pack/cmp/start/cmp-config/lua
+cp ./pack/nvim-cmp/start/cmp-config/lua/cmp_config.lua ~/.config/nvim/pack/cmp/start/cmp-config/lua/cmp_config.lua
 if [ ! -d ~/.config/nvim/pack/cmp/start/nvim-cmp ]; then
   git clone https://github.com/hrsh7th/nvim-cmp ~/.config/nvim/pack/cmp/start/nvim-cmp
 fi

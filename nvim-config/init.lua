@@ -1,7 +1,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require('cmp_config')
 require('ts_ls')
 require('nvim-tree-config')
 require('lsp-file-ops-config')
