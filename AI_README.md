@@ -1,0 +1,37 @@
+# AI-Assisted Plugin Management
+
+This document outlines the process for adding new Neovim plugins to this configuration, with a focus on leveraging AI assistance for a streamlined workflow.
+
+## Guiding Principles
+
+- **Pack-based management**: All plugins are managed using Neovim's native package management system (`:help packages`). This system revolves around the `packpath` option, which is a list of directories where Neovim looks for plugins.
+
+- **Autoloading with `start`**: Inside any directory in `packpath` (e.g., `~/.config/nvim/pack/`), Neovim automatically searches for plugins in any subdirectory matching `pack/*/start/*`. Any plugin located in a `start` directory will be loaded automatically at startup. This is the core mechanism we use. For example, a plugin at `pack/cmp/start/nvim-cmp` is automatically loaded.
+
+- **Co-located dependencies**: A plugin and its dependencies should be grouped together in the same pack. For example, `nvim-cmp` and all of its `cmp-*` sources are located in `pack/cmp/`. This makes it easy to manage related plugins as a single unit.
+
+- **Mirrored repository structure**: The `pack` directory in this repository is a blueprint for the final Neovim configuration. The installation scripts (`install_on_mac_osx.sh` and `Dockerfile`) are responsible for replicating this structure in the user's configuration directory (`~/.config/nvim` or `/root/.config/nvim`).
+
+- **Configuration as plugins**: Custom configurations are written as separate plugins. This keeps the main `init.lua` clean and allows for modular and targeted configuration. For example, the configuration for `nvim-cmp` is located at `pack/cmp/start/cmp-config/plugin/cmp_config.lua` and is loaded automatically because it's in a `start` directory.
+
+> **Note on Optional Plugins**: Neovim also supports optional plugins in `pack/*/opt/*`, which can be loaded manually with `:packadd`. For simplicity and consistency, this configuration exclusively uses `start` plugins.
+
+## Adding a New Plugin
+
+To add a new plugin, follow these steps:
+
+1.  **Choose or Create a Pack**: A "pack" is a logical grouping of plugins. For example, `pack/cmp` is the pack for all completion-related plugins. If you're adding a plugin related to an existing group, use that pack. If it's a new, unrelated plugin, create a new pack directory for it (e.g., `pack/my-new-plugin`).
+
+2.  **Add the Plugin to `start`**: Clone the plugin's repository into the `start` subdirectory of your chosen pack. For example: `pack/my-new-plugin/start/the-actual-plugin-name`.
+
+3.  **Add a Config Plugin**: Create a directory for your configuration plugin within the same `start` directory. This config directory should itself be structured as a plugin. The convention is to use a `-config` suffix. For example: `pack/my-new-plugin/start/my-new-plugin-config/plugin/config.lua`.
+
+4.  **Update Installation Scripts**:
+    -   **`install_on_mac_osx.sh`**: Add the necessary `git clone` commands to install the new plugin(s) and `cp` or `mkdir` and `cp` commands to create your configuration plugin directory and file.
+    -   **`Dockerfile`**: Add the same `git clone` and `COPY` commands to the `Dockerfile`.
+
+5.  **Update Documentation**:
+    -   **`doc/`**: If the new plugin introduces new mappings or functionality, consider adding a new documentation file in the `doc/` directory. After adding the file, run `:helptags` on the directory (e.g., `:helptags doc/`) to make it searchable via `:help`. Including the generated `tags` file in the repository means users get help search functionality automatically.
+    -   **`oathealth`**: If the new plugin has external dependencies that can be checked, consider updating the `oathealth` plugin to include a health check for it.
+
+By following these steps, you can ensure that new plugins are added in a way that is consistent with the existing structure of this configuration, making it easier to manage and maintain over time. 
