@@ -170,13 +170,13 @@ fi
 mkdir -p ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin
 cp ./pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua
 
-# ts-context-commentstring
-mkdir -p ~/.config/nvim/pack/ts-context-commentstring/start
-if [ ! -d ~/.config/nvim/pack/ts-context-commentstring/start/nvim-ts-context-commentstring ]; then
-  git clone https://github.com/JoosepAlviste/nvim-ts-context-commentstring.git ~/.config/nvim/pack/ts-context-commentstring/start/nvim-ts-context-commentstring
+# ts-comments
+mkdir -p ~/.config/nvim/pack/ts-comments/start
+if [ ! -d ~/.config/nvim/pack/ts-comments/start/ts-comments.nvim ]; then
+  git clone https://github.com/folke/ts-comments.nvim.git ~/.config/nvim/pack/ts-comments/start/ts-comments.nvim
 fi
-mkdir -p ~/.config/nvim/pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin
-cp ./pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin/ts-context-commentstring-config.lua ~/.config/nvim/pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin/ts-context-commentstring-config.lua
+mkdir -p ~/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin
+cp ./pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua ~/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua
 
 # OatHealth Plugin
 mkdir -p ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth

@@ -1,0 +1,4 @@
+-- This space intentionally left blank.
+-- ts-comments.nvim works out of the box with its default configuration
+-- for our use case. We are creating this file to follow the convention
+-- of the rest of the configuration. 

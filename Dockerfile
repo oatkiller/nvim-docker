@@ -91,11 +91,11 @@ RUN git clone https://github.com/nvim-treesitter/nvim-treesitter.git /root/.conf
 RUN mkdir -p /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin
 COPY pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua
 
-# ts-context-commentstring
-RUN mkdir -p /root/.config/nvim/pack/ts-context-commentstring/start
-RUN git clone https://github.com/JoosepAlviste/nvim-ts-context-commentstring.git /root/.config/nvim/pack/ts-context-commentstring/start/nvim-ts-context-commentstring
-RUN mkdir -p /root/.config/nvim/pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin
-COPY pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin/ts-context-commentstring-config.lua /root/.config/nvim/pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin/ts-context-commentstring-config.lua
+# ts-comments
+RUN mkdir -p /root/.config/nvim/pack/ts-comments/start
+RUN git clone https://github.com/folke/ts-comments.nvim.git /root/.config/nvim/pack/ts-comments/start/ts-comments.nvim
+RUN mkdir -p /root/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin
+COPY pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua /root/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua
 
 # OatHealth Plugin
 COPY pack/oathealth/start/oathealth/lua/oathealth/health.lua /root/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
