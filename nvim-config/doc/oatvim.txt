@@ -1,0 +1,29 @@
+*oatvim.txt*                                                    OatVim Help
+
+================================================================================
+CONTENTS                                                      *oatvim-contents*
+
+1.  Introduction..........................................|oatvim-introduction|
+2.  Plugin Packs................................................|oatvim-packs|
+    -   Completion (nvim-cmp)...............................|oatvim-completion|
+    -   Commenting (ts-comments)............................|oatvim-commenting|
+    -   Copilot.................................................|oatvim-copilot|
+    -   LSP (Language Server Protocol)............................|oatvim-lsp|
+    -   LSP File Operations...........................|oatvim-lsp-file-operations|
+    -   Linting/Formatting (none-ls)........................|oatvim-lint-format|
+    -   File Explorer (nvim-tree).....................|oatvim-file-explorer|
+    -   Treesitter............................................|oatvim-treesitter|
+    -   Health Checks (oathealth)...............................|oatvim-health|
+
+================================================================================
+1. Introduction                                         *oatvim-introduction*
+
+This help file documents the custom Neovim configuration, including the plugins
+used and the custom settings applied to them.
+
+================================================================================
+2. Plugin Packs                                                 *oatvim-packs*
+
+This configuration is organized into "packs" using Neovim's native package
+management system. Each pack is a directory in `pack/` that contains a logical
+grouping of plugins and their configurations. 

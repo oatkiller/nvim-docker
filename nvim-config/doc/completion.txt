@@ -1,0 +1,4 @@
+*oatvim-completion.txt*      Completion
+
+This section documents the configuration for the completion pack, centered
+around nvim-cmp. 

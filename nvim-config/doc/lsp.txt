@@ -1,0 +1,4 @@
+*oatvim-lsp.txt*            LSP
+
+This section documents the configuration for the LSP pack, centered
+around nvim-lspconfig. 

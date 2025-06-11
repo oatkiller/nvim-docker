@@ -1,0 +1,4 @@
+*oatvim-file-explorer.txt*      File Explorer
+
+This section documents the configuration for the file explorer pack, centered
+around nvim-tree. 

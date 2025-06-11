@@ -36,4 +36,11 @@ To add a new plugin, follow these steps:
     -   **`doc/`**: If the new plugin introduces new mappings or functionality, consider adding a new documentation file in the `doc/` directory. After adding the file, run `:helptags` on the directory (e.g., `:helptags doc/`) to make it searchable via `:help`. Including the generated `tags` file in the repository means users get help search functionality automatically.
     -   **`oathealth`**: If the new plugin has external dependencies that can be checked, consider updating the `oathealth` plugin to include a health check for it.
 
+6.  **Update Custom Help Documents**: This configuration uses a custom help system located in `nvim-config/doc/`.
+    -   Create or update the relevant help file for the pack (e.g., `nvim-config/doc/new-feature.txt`).
+    -   At the top of the file, add a title and a main tag: `*oatvim-new-feature* My New Feature`.
+    -   In the main help file, `nvim-config/doc/oatvim.txt`, add a link to your new help file's tag.
+    -   In your new help file, describe your configuration and provide links to the original plugin's documentation (e.g., `|new-plugin-help-tag|`).
+    -   You do not need to run `:helptags` manually; this is handled automatically when Neovim starts.
+
 By following these steps, you can ensure that new plugins are added in a way that is consistent with the existing structure of this configuration, making it easier to manage and maintain over time. 

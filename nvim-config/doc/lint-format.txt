@@ -1,0 +1,4 @@
+*oatvim-lint-format.txt*          Linting and Formatting
+
+This section documents the configuration for the linting and formatting pack,
+centered around none-ls. 
