@@ -4,3 +4,5 @@ require("CopilotChat").setup()
 if not string.find(vim.o.completeopt, 'popup') then
   vim.o.completeopt = vim.o.completeopt .. ',popup'
 end 
+
+-- TODO: deal with missing deps. see checkhealth for this plugin.
