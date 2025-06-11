@@ -42,7 +42,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-require("CopilotChat").setup()
 
 -- See https://github.com/neovim/neovim/blob/master/runtime/lua/vim/_defaults.lua
 
@@ -70,8 +69,3 @@ else
 end
 
 vim.g.tsc_makeprg = 'npx tsc -b'
-
--- Add 'popup' to completeopt if not already present
-if not string.find(vim.o.completeopt, 'popup') then
-  vim.o.completeopt = vim.o.completeopt .. ',popup'
-end

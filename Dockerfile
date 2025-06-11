@@ -84,5 +84,8 @@ RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.confi
 # Copy custom configs
 COPY pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua /root/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua
 
+# Copy Copilot completeopt config
+COPY pack/copilot/copilot-config/lua/copilot_completeopt.lua /root/.config/nvim/pack/copilot/copilot-config/lua/copilot_completeopt.lua
+
 CMD ["bash"]
 

@@ -156,4 +156,8 @@ if [ ! -d ~/.config/nvim/pack/copilot/start/CopilotChat.nvim ]; then
   git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git ~/.config/nvim/pack/copilot/start/CopilotChat.nvim
 fi
 
+# Custom Copilot completeopt config (native package management)
+mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/lua
+cp ./pack/copilot/copilot-config/lua/copilot_completeopt.lua ~/.config/nvim/pack/copilot/start/copilot-config/lua/copilot_completeopt.lua
+
 echo "Neovim config and plugins installed!" 
