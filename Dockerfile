@@ -40,6 +40,7 @@ RUN git clone https://github.com/petertriho/cmp-git /root/.config/nvim/pack/cmp/
 # lspconfig
 RUN mkdir -p /root/.config/nvim/pack/lsp/start
 RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/lsp/start/nvim-lspconfig
+COPY pack/lsp/start/lsp-config/plugin/lsp_config.lua /root/.config/nvim/pack/lsp/start/lsp-config/plugin/lsp_config.lua
 
 # fzf and fzf.vim
 RUN mkdir -p /root/.config/nvim/pack/fzf/start

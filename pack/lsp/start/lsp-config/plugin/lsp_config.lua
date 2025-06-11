@@ -1,20 +1,22 @@
 local lspconfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local function on_attach(client, bufnr)
-
   -- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
   -- `vim.lsp.buf.code_action()` if specified in `context.only`.
-  vim.api.nvim_buf_create_user_command(0, 'LspTypescriptSourceAction', function()
-    local source_actions = vim.tbl_filter(function(action)
-      return vim.startswith(action, 'source.')
-    end, client.server_capabilities.codeActionProvider.codeActionKinds)
+  if client.name == 'ts_ls' then
+    vim.api.nvim_buf_create_user_command(0, 'LspTypescriptSourceAction', function()
+      local source_actions = vim.tbl_filter(function(action)
+        return vim.startswith(action, 'source.')
+      end, client.server_capabilities.codeActionProvider.codeActionKinds)
 
-    vim.lsp.buf.code_action({
-      context = {
-        only = source_actions,
-      },
-    })
-  end, {})
+      vim.lsp.buf.code_action({
+        context = {
+          only = source_actions,
+        },
+      })
+    end, {})
+  end
 
   local map = function(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
@@ -54,7 +56,9 @@ local function on_attach(client, bufnr)
     })
   end
 
-  map("n", "<leader>oi", "<Cmd>LspTypescriptSourceAction<CR>", "LSP: Organize Imports")
+  if client.name == 'ts_ls' then
+    map("n", "<leader>oi", "<Cmd>LspTypescriptSourceAction<CR>", "LSP: Organize Imports")
+  end
 
   vim.api.nvim_buf_create_user_command(bufnr, "LspFeatures", function()
     print(vim.inspect(client.server_capabilities))
@@ -97,6 +101,7 @@ end
 -- This will merge nvim-lspconfig's default capabilities with our custom settings.
 lspconfig.ts_ls.setup({
   on_attach = on_attach,
+  capabilities = capabilities,
   commands = {
     LspRenameFile = {
       rename_file,
@@ -104,3 +109,9 @@ lspconfig.ts_ls.setup({
     },
   }
 })
+
+-- Setup for tailwindcss
+lspconfig.tailwindcss.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+}) 

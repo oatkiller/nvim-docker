@@ -90,6 +90,8 @@ mkdir -p ~/.config/nvim/pack/lsp/start
 if [ ! -d ~/.config/nvim/pack/lsp/start/nvim-lspconfig ]; then
   git clone https://github.com/neovim/nvim-lspconfig ~/.config/nvim/pack/lsp/start/nvim-lspconfig
 fi
+mkdir -p ~/.config/nvim/pack/lsp/start/lsp-config/plugin
+cp ./pack/lsp/start/lsp-config/plugin/lsp_config.lua ~/.config/nvim/pack/lsp/start/lsp-config/plugin/lsp_config.lua
 
 # fzf and fzf.vim
 mkdir -p ~/.config/nvim/pack/fzf/start
