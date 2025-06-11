@@ -61,8 +61,8 @@ mkdir -p ~/.config/nvim
 cp -R ./nvim-config/* ~/.config/nvim/
 
 # nvim-cmp and sources
-mkdir -p ~/.config/nvim/pack/cmp/start/cmp-config/lua
-cp ./pack/nvim-cmp/start/cmp-config/lua/cmp_config.lua ~/.config/nvim/pack/cmp/start/cmp-config/lua/cmp_config.lua
+mkdir -p ~/.config/nvim/pack/cmp/start/cmp-config/plugin
+cp ./pack/nvim-cmp/start/cmp-config/plugin/cmp_config.lua ~/.config/nvim/pack/cmp/start/cmp-config/plugin/cmp_config.lua
 if [ ! -d ~/.config/nvim/pack/cmp/start/nvim-cmp ]; then
   git clone https://github.com/hrsh7th/nvim-cmp ~/.config/nvim/pack/cmp/start/nvim-cmp
 fi
@@ -137,8 +137,8 @@ if [ ! -d ~/.config/nvim/pack/nvim-tree/start/nvim-web-devicons ]; then
 fi
 
 # Custom nvim-tree config (native package management)
-mkdir -p ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua
-cp ./pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/lua/nvim-tree-config.lua
+mkdir -p ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/plugin
+cp ./pack/nvim-tree/start/nvim-tree-config/plugin/nvim-tree-config.lua ~/.config/nvim/pack/nvim-tree/start/nvim-tree-config/plugin/nvim-tree-config.lua
 
 # nvim-lsp-file-operations
 mkdir -p ~/.config/nvim/pack/lsp-file-ops/start
@@ -147,8 +147,8 @@ if [ ! -d ~/.config/nvim/pack/lsp-file-ops/start/nvim-lsp-file-operations ]; the
 fi
 
 # Custom lsp-file-ops config (native package management)
-mkdir -p ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua
-cp ./pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/lua/lsp-file-ops-config.lua
+mkdir -p ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/plugin
+cp ./pack/lsp-file-ops/start/lsp-file-ops-config/plugin/lsp-file-ops-config.lua ~/.config/nvim/pack/lsp-file-ops/start/lsp-file-ops-config/plugin/lsp-file-ops-config.lua
 
 # CopilotChat.nvim
 mkdir -p ~/.config/nvim/pack/copilot/start
@@ -157,7 +157,7 @@ if [ ! -d ~/.config/nvim/pack/copilot/start/CopilotChat.nvim ]; then
 fi
 
 # Custom Copilot completeopt config (native package management)
-mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/lua
-cp ./pack/copilot/copilot-config/lua/copilot_completeopt.lua ~/.config/nvim/pack/copilot/start/copilot-config/lua/copilot_completeopt.lua
+mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/plugin
+cp ./pack/copilot/copilot-config/plugin/copilot_completeopt.lua ~/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
 echo "Neovim config and plugins installed!" 

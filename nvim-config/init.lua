@@ -2,8 +2,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require('ts_ls')
-require('nvim-tree-config')
-require('lsp-file-ops-config')
 
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('tailwindcss')
