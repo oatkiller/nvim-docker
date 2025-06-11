@@ -85,5 +85,8 @@ RUN mkdir -p /root/.config/nvim/pack/copilot/start
 RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.config/nvim/pack/copilot/start/CopilotChat.nvim
 COPY pack/copilot/copilot-config/plugin/copilot_completeopt.lua /root/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
+# OatHealth Plugin
+COPY pack/oathealth/start/oathealth/lua/oathealth/health.lua /root/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
+
 CMD ["bash"]
 

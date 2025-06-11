@@ -162,4 +162,8 @@ fi
 mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/plugin
 cp ./pack/copilot/copilot-config/plugin/copilot_completeopt.lua ~/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
+# OatHealth Plugin
+mkdir -p ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth
+cp ./pack/oathealth/start/oathealth/lua/oathealth/health.lua ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
+
 echo "Neovim config and plugins installed!" 
