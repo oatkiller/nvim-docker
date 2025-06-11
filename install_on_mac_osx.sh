@@ -162,6 +162,14 @@ fi
 mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/plugin
 cp ./pack/copilot/copilot-config/plugin/copilot_completeopt.lua ~/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
+# nvim-treesitter
+mkdir -p ~/.config/nvim/pack/nvim-treesitter/start
+if [ ! -d ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter ]; then
+  git clone https://github.com/nvim-treesitter/nvim-treesitter.git ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter
+fi
+mkdir -p ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin
+cp ./pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua
+
 # ts-context-commentstring
 mkdir -p ~/.config/nvim/pack/ts-context-commentstring/start
 if [ ! -d ~/.config/nvim/pack/ts-context-commentstring/start/nvim-ts-context-commentstring ]; then

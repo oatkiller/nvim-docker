@@ -85,6 +85,12 @@ RUN mkdir -p /root/.config/nvim/pack/copilot/start
 RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.config/nvim/pack/copilot/start/CopilotChat.nvim
 COPY pack/copilot/copilot-config/plugin/copilot_completeopt.lua /root/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
+# nvim-treesitter
+RUN mkdir -p /root/.config/nvim/pack/nvim-treesitter/start
+RUN git clone https://github.com/nvim-treesitter/nvim-treesitter.git /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter
+RUN mkdir -p /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin
+COPY pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua
+
 # ts-context-commentstring
 RUN mkdir -p /root/.config/nvim/pack/ts-context-commentstring/start
 RUN git clone https://github.com/JoosepAlviste/nvim-ts-context-commentstring.git /root/.config/nvim/pack/ts-context-commentstring/start/nvim-ts-context-commentstring

@@ -2,6 +2,8 @@
 
 This document outlines the process for adding new Neovim plugins to this configuration, with a focus on leveraging AI assistance for a streamlined workflow.
 
+**Important**: This repository is not a Neovim configuration itself. Rather, it is a blueprint and a set of installers (`install_on_mac_osx.sh` and `Dockerfile`) that build a complete, ready-to-use Neovim environment. The plugin source code is not stored here; it is cloned during the installation process.
+
 ## Guiding Principles
 
 - **Pack-based management**: All plugins are managed using Neovim's native package management system (`:help packages`). This system revolves around the `packpath` option, which is a list of directories where Neovim looks for plugins.
