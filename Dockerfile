@@ -85,6 +85,12 @@ RUN mkdir -p /root/.config/nvim/pack/copilot/start
 RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.config/nvim/pack/copilot/start/CopilotChat.nvim
 COPY pack/copilot/copilot-config/plugin/copilot_completeopt.lua /root/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
+# ts-context-commentstring
+RUN mkdir -p /root/.config/nvim/pack/ts-context-commentstring/start
+RUN git clone https://github.com/JoosepAlviste/nvim-ts-context-commentstring.git /root/.config/nvim/pack/ts-context-commentstring/start/nvim-ts-context-commentstring
+RUN mkdir -p /root/.config/nvim/pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin
+COPY pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin/ts-context-commentstring-config.lua /root/.config/nvim/pack/ts-context-commentstring/start/ts-context-commentstring-config/plugin/ts-context-commentstring-config.lua
+
 # OatHealth Plugin
 COPY pack/oathealth/start/oathealth/lua/oathealth/health.lua /root/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
 
