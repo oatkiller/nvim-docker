@@ -5,3 +5,5 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 } 
+
+-- TODO: add code to the installer and dockerfile to pre install needed parsers
