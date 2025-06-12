@@ -6,4 +6,4 @@ require('nvim-treesitter.configs').setup {
   },
 } 
 
--- TODO: add code to the installer and dockerfile to pre install needed parsers
+-- TODO: add code to the installer and dockerfile to pre install needed parser.
