@@ -46,6 +46,11 @@ M.check = function()
   else
     vim.health.error("npm is not installed.", "Please install npm.")
   end
+  if check_executable("fzf") then
+    vim.health.ok("fzf is installed.")
+  else
+    vim.health.error("fzf is not installed.", "Please run the install script inside ~/.config/nvim/pack/fzf/start/fzf/ or re-run the main install script.")
+  end
 
   -- Check Neovim Plugins
   vim.health.info("Checking Neovim plugins...")
@@ -79,7 +84,11 @@ M.check = function()
   else
     vim.health.error("which-key.nvim is not loaded.")
   end
-
+  if check_plugin("fzf-lua") then
+    vim.health.ok("fzf-lua is loaded.")
+  else
+    vim.health.error("fzf-lua is not loaded.")
+  end
 
   -- Check NPM-installed Executables
   vim.health.info("Checking NPM-installed executables...")

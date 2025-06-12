@@ -1,0 +1,7 @@
+*oatvim-fzf* Fuzzy Finding
+
+This configuration uses `fzf-lua` to provide a fast and powerful fuzzy finding experience.
+
+A key part of the integration is calling `require('fzf-lua').register_ui_select()`. This function replaces Neovim's basic `vim.ui.select` function with a more feature-rich fzf-powered picker. This is primarily to improve the user experience of other plugins, particularly `CopilotChat.nvim`. With this change, picking Copilot models, prompts, and agents uses the `fzf-lua` interface.
+
+For more information, see the plugin's documentation: |fzf-lua-contents| 

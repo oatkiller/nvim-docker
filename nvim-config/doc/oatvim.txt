@@ -8,6 +8,7 @@ CONTENTS                                                      *oatvim-contents*
     -   Completion (nvim-cmp)...............................|oatvim-completion|
     -   Commenting (ts-comments)............................|oatvim-commenting|
     -   Copilot.................................................|oatvim-copilot|
+    -   Fuzzy Finding (fzf-lua)...................................|oatvim-fzf|
     -   LSP (Language Server Protocol)............................|oatvim-lsp|
     -   LSP File Operations...........................|oatvim-lsp-file-operations|
     -   Linting/Formatting (none-ls)........................|oatvim-lint-format|

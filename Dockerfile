@@ -46,7 +46,8 @@ COPY pack/lsp/start/lsp-config/plugin/lsp_config.lua /root/.config/nvim/pack/lsp
 RUN mkdir -p /root/.config/nvim/pack/fzf/start
 RUN git clone https://github.com/junegunn/fzf.git /root/.config/nvim/pack/fzf/start/fzf
 RUN cd /root/.config/nvim/pack/fzf/start/fzf && make install
-RUN git clone https://github.com/junegunn/fzf.vim /root/.config/nvim/pack/fzf/start/fzf.vim
+RUN git clone https://github.com/ibhagwan/fzf-lua.git /root/.config/nvim/pack/fzf/start/fzf-lua
+COPY pack/fzf/start/fzf-lua-config/plugin/fzf-lua-config.lua /root/.config/nvim/pack/fzf/start/fzf-lua-config/plugin/fzf-lua-config.lua
 
 # which-key.nvim
 RUN mkdir -p /root/.config/nvim/pack/which-key/start

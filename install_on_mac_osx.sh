@@ -99,9 +99,13 @@ if [ ! -d ~/.config/nvim/pack/fzf/start/fzf ]; then
   git clone https://github.com/junegunn/fzf.git ~/.config/nvim/pack/fzf/start/fzf
   ~/.config/nvim/pack/fzf/start/fzf/install --bin
 fi
-if [ ! -d ~/.config/nvim/pack/fzf/start/fzf.vim ]; then
-  git clone https://github.com/junegunn/fzf.vim ~/.config/nvim/pack/fzf/start/fzf.vim
+if [ ! -d ~/.config/nvim/pack/fzf/start/fzf-lua ]; then
+  git clone https://github.com/ibhagwan/fzf-lua.git ~/.config/nvim/pack/fzf/start/fzf-lua
 fi
+
+# fzf-lua config
+mkdir -p ~/.config/nvim/pack/fzf/start/fzf-lua-config/plugin
+cp ./pack/fzf/start/fzf-lua-config/plugin/fzf-lua-config.lua ~/.config/nvim/pack/fzf/start/fzf-lua-config/plugin/fzf-lua-config.lua
 
 # none-ls and plenary (native package management)
 mkdir -p ~/.config/nvim/pack/none-ls/start
