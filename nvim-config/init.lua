@@ -42,12 +42,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- See https://github.com/neovim/neovim/blob/master/runtime/lua/vim/_defaults.lua
 
 
--- TODO: move to config in pack for nvim-tree
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {
   desc = "Toggle file explorer"
 })
 
--- TODO: move to config in pack for which-key
 -- which-key.nvim setup
 local wk = require('which-key')
 wk.setup({
@@ -58,7 +56,6 @@ vim.keymap.set('n', '<leader>?', function()
   wk.show()
 end, { desc = 'Show which-key' })
 
--- TODO: move to config into a new pack that has doc/mysetup.txt and this code to generate the tags.
 -- Automatically generate helptags for the doc directory on startup
 local doc_path = vim.fn.stdpath('config') .. '/doc'
 if vim.fn.isdirectory(doc_path) == 1 then
