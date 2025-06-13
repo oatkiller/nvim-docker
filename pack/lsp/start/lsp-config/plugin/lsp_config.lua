@@ -56,10 +56,6 @@ local function on_attach(client, bufnr)
     })
   end
 
-  if client.name == 'ts_ls' then
-    map("n", "<leader>oi", "<Cmd>LspTypescriptSourceAction<CR>", "LSP: Organize Imports")
-  end
-
   vim.api.nvim_buf_create_user_command(bufnr, "LspFeatures", function()
     print(vim.inspect(client.server_capabilities))
   end, { desc = "Print LSP Capabilities" })
@@ -114,4 +110,23 @@ lspconfig.ts_ls.setup({
 lspconfig.tailwindcss.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}) 
+})
+
+-- -----------------------------------------------------------------------------
+-- Global keymap: <leader>oi → Organize Imports (TypeScript)
+--
+-- A buffer-local mapping inside `on_attach` frequently went missing because it
+-- was tied to the lifetime of the buffer that first triggered the attach.  We
+-- instead register a single, global mapping that attempts to run
+-- `:LspTypescriptSourceAction` only if the user command is available for the
+-- current buffer.  This guarantees the mapping is always present while still
+-- failing gracefully in non-TypeScript buffers.
+-- -----------------------------------------------------------------------------
+
+vim.keymap.set("n", "<leader>oi", function()
+  if vim.fn.exists(":LspTypescriptSourceAction") == 2 then
+    vim.cmd("silent! LspTypescriptSourceAction")
+  else
+    vim.notify("Typescript Source Actions not available in this buffer.", vim.log.levels.WARN)
+  end
+end, { silent = true, desc = "LSP: Source Actions (TypeScript)" }) 
