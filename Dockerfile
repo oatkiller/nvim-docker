@@ -89,6 +89,7 @@ COPY pack/copilot/copilot-config/plugin/copilot_completeopt.lua /root/.config/nv
 # nvim-treesitter
 RUN mkdir -p /root/.config/nvim/pack/nvim-treesitter/start
 RUN git clone https://github.com/nvim-treesitter/nvim-treesitter.git /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter
+RUN git clone https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-textobjects
 RUN mkdir -p /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin
 COPY pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua /root/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua
 

@@ -173,6 +173,9 @@ if [ ! -d ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter ]; then
 fi
 mkdir -p ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin
 cp ./pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-config/plugin/nvim-treesitter-config.lua
+if [ ! -d ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-textobjects ]; then
+  git clone https://github.com/nvim-treesitter/nvim-treesitter-textobjects ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter-textobjects
+fi
 
 # ts-comments
 mkdir -p ~/.config/nvim/pack/ts-comments/start
