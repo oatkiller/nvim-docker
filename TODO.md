@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] get typescript and tsx motions working
 - [ ] Update docs for all packs 
 - [ ] Sometimes the <Leader>oi mapping isn't available, even when the related command is. 
 - [ ] Move nvim-tree keymap config from init.lua to its pack config
