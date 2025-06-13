@@ -16,10 +16,22 @@ require('nvim-treesitter.configs').setup {
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
-        ["ai"] = "@conditional.outer",
-        ["ii"] = "@conditional.inner",
+        -- Parameter (arguments)
+        ["ip"] = "@parameter.inner",
+        ["ap"] = "@parameter.outer",
+        ["il"] = "@loop.inner",
+        ["al"] = "@loop.outer",
+        ["ie"] = "@element.inner",
+        ["ae"] = "@element.outer",
+        -- Attributes / props
+        ["ia"] = "@attribute.inner",
+        ["aa"] = "@attribute.outer",
+        -- Conditionals (if / else)
+        ["id"] = "@conditional.inner",
+        ["ad"] = "@conditional.outer",
+        -- Statements (generic)
+        ["is"] = "@statement.outer",
         ["as"] = "@statement.outer",
-        ["is"] = "@statement.inner",
       },
     },
     -- Movement between functions / classes
@@ -29,10 +41,22 @@ require('nvim-treesitter.configs').setup {
       goto_next_start = {
         ["]m"] = "@function.outer",
         ["]]"] = "@class.outer",
+        ["]l"] = "@loop.outer",
+        ["]e"] = "@element.outer",
+        ["]a"] = "@attribute.outer",
+        ["]p"] = "@parameter.outer",
+        ["]d"] = "@conditional.outer",
+        ["]s"] = "@statement.outer",
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
         ["[["] = "@class.outer",
+        ["[l"] = "@loop.outer",
+        ["[e"] = "@element.outer",
+        ["[a"] = "@attribute.outer",
+        ["[p"] = "@parameter.outer",
+        ["[d"] = "@conditional.outer",
+        ["[s"] = "@statement.outer",
       },
     },
   },
