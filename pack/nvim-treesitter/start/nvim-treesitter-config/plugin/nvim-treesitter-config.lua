@@ -26,9 +26,6 @@ require('nvim-treesitter.configs').setup {
         -- Attributes / props
         ["ia"] = "@attribute.inner",
         ["aa"] = "@attribute.outer",
-        -- Conditionals (if / else)
-        ["id"] = "@conditional.inner",
-        ["ad"] = "@conditional.outer",
         -- Statements (generic)
         ["is"] = "@statement.outer",
         ["as"] = "@statement.outer",
@@ -45,7 +42,6 @@ require('nvim-treesitter.configs').setup {
         ["]e"] = "@element.outer",
         ["]a"] = "@attribute.outer",
         ["]p"] = "@parameter.outer",
-        ["]d"] = "@conditional.outer",
         ["]s"] = "@statement.outer",
       },
       goto_previous_start = {
@@ -55,7 +51,6 @@ require('nvim-treesitter.configs').setup {
         ["[e"] = "@element.outer",
         ["[a"] = "@attribute.outer",
         ["[p"] = "@parameter.outer",
-        ["[d"] = "@conditional.outer",
         ["[s"] = "@statement.outer",
       },
     },

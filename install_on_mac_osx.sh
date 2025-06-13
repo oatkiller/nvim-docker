@@ -189,4 +189,14 @@ cp ./pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua ~/.
 mkdir -p ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth
 cp ./pack/oathealth/start/oathealth/lua/oathealth/health.lua ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
 
+# Pre-install Treesitter parsers so first launch is silent
+# We use a headless Neovim session to synchronously fetch & compile the grammars.
+# TSInstallSync! exits with 0 even if the grammars are already present, so this
+# step is idempotent and safe to run every time the installer is executed.
+# If additional parsers are required later, append them to the list below.
+
+nvim --headless \
+  "+TSInstallSync! typescript tsx" \
+  +qa
+
 echo "Neovim config and plugins installed!" 

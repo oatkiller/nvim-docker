@@ -18,6 +18,13 @@ RUN npm install -g typescript-language-server typescript
 # Install Tailwind CSS Language Server
 RUN npm install -g @tailwindcss/language-server
 
+# -----------------------------------------------------------------------------
+# NOTE: We intentionally fetch the *ARM64* build of Neovim here.  This container
+# is designed to run on Apple-Silicon (M1/M2) Macs where the host Docker engine
+# executes aarch64/arm64 images natively.  If you plan to build/run this image
+# on an x86-64 host, swap the URL for the appropriate `nvim-linux64.tar.gz`
+# release instead.
+# -----------------------------------------------------------------------------
 # Install Neovim ARM64 version
 RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-arm64.tar.gz && \
     tar xzf nvim-linux-arm64.tar.gz && \
@@ -101,6 +108,8 @@ COPY pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua /ro
 
 # OatHealth Plugin
 COPY pack/oathealth/start/oathealth/lua/oathealth/health.lua /root/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
+
+RUN nvim --headless -c "TSInstallSync! typescript tsx" -c qa
 
 CMD ["bash"]
 

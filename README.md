@@ -11,6 +11,8 @@ This project installs the following Neovim plugins directly (without a plugin ma
 
 These plugins are installed automatically by the Dockerfile and the install_on_mac_osx.sh script. 
 
+> **Platform note:**  The Docker image fetches the *ARM64* build of Neovim (see the comment in the `Dockerfile`).  This is intentional because the container is meant to be run on Apple-Silicon (M-series) Macs where Docker Desktop executes arm64 layers natively.  If you plan to build or run the image on an x86-64 host, change the download URL to `nvim-linux64.tar.gz` or another architecture-appropriate release.
+
 # Adding new plugins
 
 To add a new plugin:
