@@ -19,7 +19,7 @@ require('nvim-treesitter.configs').setup {
         ["ai"] = "@conditional.outer",
         ["ii"] = "@conditional.inner",
         ["as"] = "@statement.outer",
-        ["is"] = "@statement.outer",
+        ["is"] = "@statement.inner",
       },
     },
     -- Movement between functions / classes
