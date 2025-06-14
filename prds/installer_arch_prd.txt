@@ -1,0 +1,107 @@
+# Neovim Dockerized Environment: PRD
+
+## Project Overview
+A cross-platform, modular, and user-friendly Neovim environment distributed via Docker and shell scripts. The project aims to provide a flexible installer, robust plugin management, and seamless usability across macOS, Linux, and WSL2, with a focus on portability and developer experience.
+
+## Goals & Success Criteria
+- Users can run Neovim in Docker with access to their files and custom packs.
+- Installer supports modular pack selection and OS detection.
+- Solution works on macOS, Ubuntu, and WSL2 (x86_64 and ARM64).
+- Automated CI tests validate installation and pack loading on all platforms.
+- Documentation is clear, actionable, and up-to-date.
+
+## User Stories
+- As a user, I want to enable/disable Neovim packs easily so I can customize my setup.
+- As a user, I want to select which packs to install at setup time.
+- As a user, I want to run Neovim in Docker and edit any file in my home directory.
+- As a maintainer, I want to test the installer and packs on all supported platforms.
+- As a user, I want clear instructions for installation, usage, and customization.
+
+## Current State
+- Neovim is run in Docker via `scripts/nvim-docker`.
+- Packs are managed using Neovim's `pack/*/start/` and `pack/*/opt/` directories.
+- The installer is a shell script with an opinionated default set of packs.
+- No automated CI for installer or pack validation.
+- Documentation is minimal.
+
+## Problems Identified & Proposed Solutions
+
+### 1. Pack Enable/Disable
+- **Problem:** Users can't easily move packs between `start` and `opt`.
+- **Solution:** Document the process and provide a helper script or CLI flag to move packs.
+
+### 2. Configurable List of Packs
+- **Problem:** Only a default set of packs is installed.
+- **Solution:** Allow users to pass a config file or CLI flags to select packs at install time, while keeping a curated default.
+
+### 3. Docker Script Limitations
+- **Problem:**
+  - Only one container instance can run at a time (fixed name).
+  - Only `$PWD` is mounted, limiting file access.
+  - No usage documentation.
+- **Solution:**
+  - Use a unique container name per invocation or allow user-specified names.
+  - Mount `$HOME` and set `-w "$PWD"` for broader file access.
+  - Add usage docs and optionally support re-using containers.
+
+### 4. Installer Packaging
+- **Problem:** System package managers (RPM, DEB, etc.) add complexity and reduce flexibility.
+- **Solution:** Stick with shell scripts for now; consider packaging only for system-level distribution.
+
+### 5. Automated Testing
+- **Problem:** No CI to validate installer or packs across platforms.
+- **Solution:** Use CI (GitHub Actions, etc.) to spin up VMs/containers, run the installer, and validate Neovim and packs.
+
+### 6. Cross-Platform Installer Tech
+- **Problem:** Need for modular, cross-platform installer.
+- **Solution:** Use a shell script with OS detection and modular logic. Consider but do not require `nix`, `asdf`, etc.
+
+### 7. Docker, ARM, and Portability
+- **Problem:** Docker images are architecture-specific.
+- **Solution:** Build and publish multi-arch images (ARM64, x86_64) using Docker Buildx and manifest lists. Use official Neovim base images.
+
+### 8. Generic Installer Wrapper
+- **Problem:** No unified installer experience.
+- **Solution:** Create a wrapper that detects OS, allows pack selection, calls platform-specific logic, and prints post-install instructions.
+
+## Technical Requirements
+- Unique container naming or user-specified names in Docker script.
+- Mount `$HOME` and set working directory to `$PWD` in Docker script.
+- Modular installer supporting CLI/config pack selection and OS detection.
+- Multi-arch Docker image builds (ARM64, x86_64).
+- CI for installer and pack validation on macOS, Ubuntu, and WSL2.
+- Helper script or CLI flag for moving packs between `start` and `opt`.
+- Clear, comprehensive documentation.
+
+## Action Items
+1. **Revise `scripts/nvim-docker`**
+   - Unique container names
+   - Mount `$HOME` and set `-w "$PWD"`
+   - Add usage docs
+   - (Optional) Support container re-use
+2. **Modularize Installer Logic**
+   - Support pack selection via CLI/config
+   - Add OS detection
+   - Document pack enable/disable
+3. **Set Up CI for Testing**
+   - Test installer and packs on all platforms
+   - Use test suite as source of truth for supported packs
+4. **Docker Portability**
+   - Build/publish multi-arch images
+   - Use official Neovim base images
+   - Document architecture requirements
+5. **Documentation**
+   - Usage, customization, troubleshooting
+   - README updates
+
+## Testing & Validation
+- Installer works on macOS, Ubuntu, and WSL2 (ARM64 and x86_64)
+- Packs load correctly in all environments
+- Docker image runs and mounts user files as expected
+- CI passes for all supported platforms
+
+## Documentation Deliverables
+- README with installation, usage, and customization instructions
+- Section on enabling/disabling packs
+- Troubleshooting guide
+- CI/test status badges
