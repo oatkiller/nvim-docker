@@ -117,13 +117,13 @@ function Install-Plugin {
 }
 
 # nvim-cmp and sources
-Install-Plugin -PackName "cmp" -PluginName "nvim-cmp" -RepoUrl "https://github.com/hrsh7th/nvim-cmp" -ConfigRelativePath "pack\cmp\start\cmp-config\plugin\cmp_config.lua"
-Install-Plugin -PackName "cmp" -PluginName "cmp-nvim-lsp" -RepoUrl "https://github.com/hrsh7th/cmp-nvim-lsp"
-Install-Plugin -PackName "cmp" -PluginName "cmp-buffer" -RepoUrl "https://github.com/hrsh7th/cmp-buffer"
-Install-Plugin -PackName "cmp" -PluginName "cmp-path" -RepoUrl "https://github.com/hrsh7th/cmp-path"
-Install-Plugin -PackName "cmp" -PluginName "cmp-cmdline" -RepoUrl "https://github.com/hrsh7th/cmp-cmdline"
-Install-Plugin -PackName "cmp" -PluginName "cmp-vsnip" -RepoUrl "https://github.com/hrsh7th/cmp-vsnip"
-Install-Plugin -PackName "cmp" -PluginName "cmp-git" -RepoUrl "https://github.com/petertriho/cmp-git"
+Install-Plugin -PackName "nvim-cmp" -PluginName "nvim-cmp" -RepoUrl "https://github.com/hrsh7th/nvim-cmp" -ConfigRelativePath "pack\nvim-cmp\start\cmp-config\plugin\cmp_config.lua"
+Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-nvim-lsp" -RepoUrl "https://github.com/hrsh7th/cmp-nvim-lsp"
+Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-buffer" -RepoUrl "https://github.com/hrsh7th/cmp-buffer"
+Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-path" -RepoUrl "https://github.com/hrsh7th/cmp-path"
+Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-cmdline" -RepoUrl "https://github.com/hrsh7th/cmp-cmdline"
+Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-vsnip" -RepoUrl "https://github.com/hrsh7th/cmp-vsnip"
+Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-git" -RepoUrl "https://github.com/petertriho/cmp-git"
 
 # lspconfig
 Install-Plugin -PackName "lsp" -PluginName "nvim-lspconfig" -RepoUrl "https://github.com/neovim/nvim-lspconfig" -ConfigRelativePath "pack\lsp\start\lsp-config\plugin\lsp_config.lua"
