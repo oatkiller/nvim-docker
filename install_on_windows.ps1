@@ -187,6 +187,10 @@ $copilotConfigDestDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", "copi
 New-Item -Path $copilotConfigDestDir -ItemType Directory -Force | Out-Null
 Copy-Item -Path $copilotConfigSrc -Destination $copilotConfigDestDir
 
+# copy copilot_disable.lua as well
+$copilotDisableSrc = [System.IO.Path]::Combine($PSScriptRoot, "pack", "copilot", "copilot-config", "plugin", "copilot_disable.lua")
+Copy-Item -Path $copilotDisableSrc -Destination $copilotConfigDestDir
+
 # nvim-treesitter
 Install-Plugin -PackName "nvim-treesitter" -PluginName "nvim-treesitter" -RepoUrl "https://github.com/nvim-treesitter/nvim-treesitter.git" -ConfigRelativePath "pack\nvim-treesitter\start\nvim-treesitter-config\plugin\nvim-treesitter-config.lua"
 Install-Plugin -PackName "nvim-treesitter" -PluginName "nvim-treesitter-textobjects" -RepoUrl "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"

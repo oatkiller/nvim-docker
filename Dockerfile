@@ -99,6 +99,7 @@ RUN mkdir -p /root/.config/nvim/pack/copilot/start
 RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.config/nvim/pack/copilot/start/CopilotChat.nvim
 RUN git clone https://github.com/github/copilot.vim.git /root/.config/nvim/pack/copilot/start/copilot.vim
 COPY pack/copilot/copilot-config/plugin/copilot_completeopt.lua /root/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
+COPY pack/copilot/copilot-config/plugin/copilot_disable.lua /root/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_disable.lua
 
 # nvim-treesitter
 RUN mkdir -p /root/.config/nvim/pack/nvim-treesitter/start

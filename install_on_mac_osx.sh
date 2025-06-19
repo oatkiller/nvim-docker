@@ -207,6 +207,9 @@ fi
 mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/plugin
 cp ./pack/copilot/copilot-config/plugin/copilot_completeopt.lua ~/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
+# also copy the file that disables default copilot mappings
+cp ./pack/copilot/copilot-config/plugin/copilot_disable.lua ~/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_disable.lua
+
 # nvim-treesitter
 mkdir -p ~/.config/nvim/pack/nvim-treesitter/start
 if [ ! -d ~/.config/nvim/pack/nvim-treesitter/start/nvim-treesitter ]; then
@@ -244,5 +247,10 @@ echo "Neovim config and plugins installed successfully!"
 echo "Running OatHealth check..."
 nvim --headless -c "checkhealth oathealth" -c "q"
 
-# fzf
-git clone https://github.com/junegunn/fzf.git ~/.fzf --depth 1
+# fzf (~/.fzf is optional; clone only if not present)
+if [ ! -d "$HOME/.fzf" ]; then
+  echo "Installing standalone fzf to ~/.fzf..."
+  git clone https://github.com/junegunn/fzf.git "$HOME/.fzf" --depth 1
+else
+  echo "Standalone fzf repo already exists at $HOME/.fzf; skipping clone."
+fi
