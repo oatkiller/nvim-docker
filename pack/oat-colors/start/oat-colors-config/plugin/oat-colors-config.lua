@@ -4,13 +4,16 @@
 
 local M = {}
 
--- List of available OatVim colorschemes
+-- List of all available 'oat-' themes.
 M.themes = {
   'oat-desert',
   'oat-elflord',
+  'oat-evening',
   'oat-murphy',
   'oat-zellner',
-  'oat-evening',
+  'oat-ron',
+  'oat-pablo',
+  'oat-slate',
 }
 
 -- Store the initial colorscheme to allow resetting
@@ -65,14 +68,23 @@ function M.reset_theme()
   set_colorscheme(M.initial_theme)
 end
 
+-- Command to list all available themes.
+local function list_themes()
+  print("Available oat- colorschemes:")
+  for _, theme in ipairs(M.themes) do
+    print("- " .. theme)
+  end
+end
+
 -- Create user commands
 vim.api.nvim_create_user_command('OatColorsNext', M.next_theme, {})
 vim.api.nvim_create_user_command('OatColorsPrevious', M.previous_theme, {})
 vim.api.nvim_create_user_command('OatColorsReset', M.reset_theme, {})
+vim.api.nvim_create_user_command('OatColorsList', list_themes, {})
 
 -- Create keymaps
-vim.keymap.set('n', '<leader>cn', ':OatColorsNext<CR>', { desc = 'Next OatVim Colorscheme' })
-vim.keymap.set('n', '<leader>cp', ':OatColorsPrevious<CR>', { desc = 'Previous OatVim Colorscheme' })
+vim.keymap.set('n', '<leader>cn', ':OatColorsNext<CR>', { desc = 'Cycle to next OatVim colorscheme' })
+vim.keymap.set('n', '<leader>cp', ':OatColorsPrevious<CR>', { desc = 'Cycle to previous OatVim colorscheme' })
 vim.keymap.set('n', '<leader>cr', ':OatColorsReset<CR>', { desc = 'Reset To Default Colorscheme' })
 
 return M 

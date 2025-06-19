@@ -15,6 +15,7 @@ CONTENTS                                                      *oatvim-contents*
     -   File Explorer (nvim-tree).....................|oatvim-file-explorer|
     -   Treesitter............................................|oatvim-treesitter|
     -   Health Checks (oathealth)...............................|oatvim-health|
+    -   Theming...........................................|oatvim-theming|
 
 ================================================================================
 1. Introduction                                         *oatvim-introduction*

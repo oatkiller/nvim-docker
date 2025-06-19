@@ -1,9 +1,127 @@
-# OatVim Theming Guide
+*oatvim-theming* OatVim Theming Guide
 
-This document outlines the highlight groups that need to be defined for a complete
-OatVim colorscheme.
+This document outlines how to use and contribute to the colorschemes for the
+OatVim configuration.
 
-## Base Highlight Groups
+================================================================================
+USAGE                                                          *oatvim-theming-usage*
+
+This section explains how to list, set, and cycle through the available `oat-`
+colorschemes.
+
+LISTING COLORSCHEMES
+--------------------
+To see a list of all available `oat-` colorschemes, use the following command: >
+  :OatColorsList
+
+SETTING A COLORSCHEME
+---------------------
+To set a specific colorscheme for your current session, use the standard
+`:colorscheme` command. For example: >
+  :colorscheme oat-elflord
+
+You can use abbreviations as long as they are unique.
+
+CYCLING THROUGH COLORSCHEMES
+----------------------------
+This configuration provides commands and mappings to quickly cycle through all
+available `oat-` themes.
+
+  :OatColorsNext          " Switch to the next theme in the list.
+  <leader>cn              " Mapping for :OatColorsNext
+
+  :OatColorsPrevious      " Switch to the previous theme in the list.
+  <leader>cp              " Mapping for :OatColorsPrevious
+
+  :OatColorsReset         " Reset to the default theme ('oat-desert').
+  <leader>cr              " Mapping for :OatColorsReset
+
+SETTING A DEFAULT COLORSCHEME
+-----------------------------
+To set a colorscheme that loads every time you start Neovim, add the
+`:colorscheme` command to your |init.lua| file.
+
+It is recommended to place this command after plugins are loaded but before any
+other UI configuration. A good place is right after the `oat-colors-config`
+setup. For example:
+>
+  -- in init.lua
+  require('oat-colors-config')
+  vim.cmd.colorscheme('oat-zellner')
+
+
+================================================================================
+CONTRIBUTING                                              *oatvim-theming-contrib*
+
+This section outlines the process and philosophy for creating new `oat-`
+colorschemes.
+
+DESIGN PHILOSOPHY                                       *oatvim-theming-philosophy*
+
+All `oat-` colorschemes should adhere to the following principles:
+
+1.  **Pure Black Background**: The editor background (`Normal` highlight group)
+    must be pure black (`#000000`).
+2.  **High Contrast**: All foreground colors must be bright, bold, and have a
+    high contrast ratio against the black background. The aesthetic should be
+    inspired by the vibrant, electric colors of classic 80s arcade games like
+    Robotron: 2084.
+3.  **Complete Coverage**: Every colorscheme must provide definitions for all
+    highlight groups listed in this document, ensuring full support for all
+    installed plugins.
+4.  **Consistency**: While palettes will differ, the *role* of each color should
+    remain relatively consistent. For example, `String` should have a color that
+    is distinct from `Keyword`.
+
+UPDATING THE THEME SWITCHER
+---------------------------
+When you add a new colorscheme, you **must** also add it to the theme switcher
+so it can be accessed with the `OatColorsNext`/`OatColorsPrevious` commands.
+
+To do this, edit the `M.themes` table in the following file:
+>
+  pack/oat-colors/start/oat-colors-config/plugin/oat-colors-config.lua
+<
+Add the name of your new theme to the list. For example:
+>
+  M.themes = {
+    'oat-desert',
+    'oat-elflord',
+    -- ... other themes
+    'oat-mynewtheme', -- Add your new theme here
+  }
+
+
+TARGET COLORSCHEMES                                       *oatvim-theming-targets*
+
+The goal is to create `oat-` versions for all of Vim's classic built-in
+colorschemes. New themes should be based on one of the following originals:
+
+- blue
+- darkblue
+- delek
+- default
+- desert  (done)
+- elflord (done)
+- evening (done)
+- koehler
+- moria
+- murphy  (done)
+- pablo   (done)
+- peachpuff
+- ron     (done)
+- slate   (done)
+- torte
+- zellner (done)
+
+================================================================================
+HIGHLIGHT GROUPS                                           *oatvim-theming-groups*
+
+This section outlines the highlight groups that need to be defined for a
+complete OatVim colorscheme.
+
+--------------------------------------------------------------------------------
+Base Highlight Groups
 
 These are the standard Neovim highlight groups that form the foundation of any
 colorscheme.
@@ -37,7 +155,8 @@ colorscheme.
 - `ColorColumn`: The column highlighted by `colorcolumn`.
 - `Conceal`: For concealed text (e.g., in markdown).
 
-## Syntax and Language
+--------------------------------------------------------------------------------
+Syntax and Language
 
 - `Comment`: Code comments.
 - `Constant`: Constants (e.g., numbers, booleans).
@@ -64,7 +183,8 @@ colorscheme.
 - `Error`: Errors.
 - `Todo`: `TODO`, `FIXME`, `XXX` comments.
 
-## Treesitter Highlight Groups
+--------------------------------------------------------------------------------
+Treesitter Highlight Groups
 
 Treesitter provides more granular syntax highlighting. These are some of the most
 common groups. A full list can be found with `:help treesitter-highlight-groups`.
@@ -99,7 +219,8 @@ common groups. A full list can be found with `:help treesitter-highlight-groups`
 - `@tag.attribute`: Tag attributes.
 - `@tag.delimiter`: Tag delimiters (`<`, `>`, `/>`).
 
-## LSP Diagnostics
+--------------------------------------------------------------------------------
+LSP Diagnostics
 
 - `LspDiagnosticsDefaultError`: Error-level diagnostics.
 - `LspDiagnosticsDefaultWarning`: Warning-level diagnostics.
@@ -110,10 +231,10 @@ common groups. A full list can be found with `:help treesitter-highlight-groups`
 - `LspDiagnosticsUnderlineInformation`: Underline for info.
 - `LspDiagnosticsUnderlineHint`: Underline for hints.
 
-## Plugin Support
+--------------------------------------------------------------------------------
+Plugin Support
 
-### nvim-tree
-
+*nvim-tree*
 - `NvimTreeRootFolder`: The root folder in the tree.
 - `NvimTreeFolderIcon`: The icon for folders.
 - `NvimTreeFolderName`: The name of folders.
@@ -125,26 +246,24 @@ common groups. A full list can be found with `:help treesitter-highlight-groups`
 - `NvimTreeImageFile`: Image file names.
 - `NvimTreeSymlink`: Symlinks.
 
-### nvim-cmp (Completion)
-
+*nvim-cmp (Completion)*
 - `CmpItemAbbr`: Abbreviation in the completion menu.
 - `CmpItemAbbrDeprecated`: Deprecated item.
 - `CmpItemAbbrMatch`: Matched characters in the abbreviation.
 - `CmpItemKind`: The "kind" of completion (e.g., Text, Method).
 - `CmpItemMenu`: Extra info in the menu.
 
-### fzf-lua
-
+*fzf-lua*
 - `FzfLuaBorder`: The border of the FZF window.
 - `FzfLuaTitle`: The title of the FZF window.
 
-### which-key
-
+*which-key*
 - `WhichKey`: The main text for which-key.
 - `WhichKeyGroup`: The group description.
 - `WhichKeyDesc`: The description of the mapping.
 - `WhichKeySeperator`: The separator (`->`).
 
-### Copilot
+*Copilot*
+- `CopilotSuggestion`: The greyed-out suggestion text from Copilot.
 
-- `CopilotSuggestion`: The greyed-out suggestion text from Copilot. 
+ vim: ft=help: 
