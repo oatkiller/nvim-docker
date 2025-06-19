@@ -20,6 +20,16 @@ if [ ${#MISSING[@]} -ne 0 ]; then
   exit 1
 fi
 
+# Install Nerd Font for icons
+echo "Checking for Nerd Font..."
+if brew list --cask font-firacode-nerd-font >/dev/null 2>&1; then
+  echo "FiraCode Nerd Font is already installed."
+else
+  echo "Installing FiraCode Nerd Font..."
+  brew tap homebrew/cask-fonts
+  brew install --cask font-firacode-nerd-font
+fi
+
 # Check Node.js version (require >=20)
 NODE_VERSION=$(node -v | sed 's/v//;s/\..*//')
 if [ "$NODE_VERSION" -lt 20 ]; then

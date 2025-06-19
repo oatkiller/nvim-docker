@@ -4,8 +4,14 @@ FROM ubuntu:24.04
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     curl unzip git ripgrep fd-find build-essential libtool libtool-bin \
-    ca-certificates bat golang-go && \
+    ca-certificates bat golang-go fontconfig && \
     rm -rf /var/lib/apt/lists/*
+
+# Install Nerd Font for icons
+RUN curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip && \
+    unzip FiraCode.zip -d /usr/local/share/fonts/FiraCode && \
+    rm FiraCode.zip && \
+    fc-cache -fv
 
 # Install Node.js LTS version
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \

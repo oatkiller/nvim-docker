@@ -54,6 +54,16 @@ if ($missingDependencies.Count -ne 0) {
     exit 1
 }
 
+# Install Nerd Font for icons using Chocolatey
+Write-Host "Checking for Nerd Font (firacode)..."
+$nerdFontPackage = "nerd-fonts-firacode"
+if (choco list --local-only --exact $nerdFontPackage) {
+    Write-Host "FiraCode Nerd Font is already installed."
+} else {
+    Write-Host "Installing FiraCode Nerd Font via Chocolatey..."
+    choco install $nerdFontPackage -y
+}
+
 # Check Node.js version (require >= 20)
 $nodeVersion = (node -v).Substring(1).Split('.')[0]
 if ($nodeVersion -lt 20) {

@@ -1,6 +1,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Set the colorscheme
+vim.cmd.colorscheme 'oat-desert'
+
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('tailwindcss')
 
