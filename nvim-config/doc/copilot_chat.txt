@@ -1,0 +1,38 @@
+*copilot-chat-integration.txt*  CopilotChat.nvim + copilot.vim integration
+
+WHY IS copilot.vim INSTALLED?                                   *copilot-chat-why*
+CopilotChat.nvim speaks the same internal protocol that the GitHub
+`copilot.vim` plugin implements for authentication and HTTP transport.  The
+actual inline-completion features of copilot.vim are **not** needed – we only
+require:
+  • the `:Copilot setup` flow to sign in once, and
+  • the background agent that handles authenticated API calls.
+
+DEFAULT MAPS & COMMANDS ADDED BY copilot.vim                       *copilot-chat-maps*
+Insert-mode maps (created unless special flags are set):
+  <Tab>                accept suggestion
+  <C-]>                dismiss suggestion
+  <M-]>, <M-[>         next / previous suggestion
+  <M-\>               trigger suggestion
+  <M-Right>           accept next word
+  <M-C-Right>         accept next line
+  <Plug>(copilot-*)   plug-style versions of the above
+
+User commands:
+  :Copilot {setup|enable|disable|signout|status|panel|version|feedback}
+
+OUR CONFIGURATION                                                 *copilot-chat-config*
+The companion file |pack/copilot/copilot-config/plugin/copilot_disable.lua|
+executes after copilot.vim and sets:
+>
+    vim.g.copilot_no_tab_map = true   -- no <Tab> map
+    vim.g.copilot_no_maps    = true   -- suppress all other maps
+    vim.g.copilot_enabled    = false  -- don't auto-enable suggestions
+<
+This leaves the :Copilot command family available for authentication &
+diagnostics while guaranteeing that none of Copilot's key-bindings interfere
+with normal editing or with CopilotChat's custom UI.
+
+SEE ALSO
+  :h copilot.txt        – official help for copilot.vim
+  :h CopilotChat        – CopilotChat.nvim documentation 
