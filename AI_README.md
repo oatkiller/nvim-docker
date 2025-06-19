@@ -30,6 +30,7 @@ To add a new plugin, follow these steps:
 
 4.  **Update Installation Scripts**:
     -   **`install_on_mac_osx.sh`**: Add the necessary `git clone` commands to install the new plugin(s) and `cp` or `mkdir` and `cp` commands to create your configuration plugin directory and file.
+    -   **`install_on_windows.ps1`**: Add a corresponding `Install-Plugin` call or other PowerShell commands to perform the same installation.
     -   **`Dockerfile`**: Add the same `git clone` and `COPY` commands to the `Dockerfile`.
 
 5.  **Update Documentation and Health Checks**: This configuration uses a custom help system located in `nvim-config/doc/`. To add or update documentation for a plugin or feature, follow this process:

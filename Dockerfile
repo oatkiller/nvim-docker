@@ -97,6 +97,7 @@ COPY pack/lsp-file-ops/start/lsp-file-ops-config/plugin/lsp-file-ops-config.lua 
 # CopilotChat.nvim
 RUN mkdir -p /root/.config/nvim/pack/copilot/start
 RUN git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git /root/.config/nvim/pack/copilot/start/CopilotChat.nvim
+RUN git clone https://github.com/github/copilot.vim.git /root/.config/nvim/pack/copilot/start/copilot.vim
 COPY pack/copilot/copilot-config/plugin/copilot_completeopt.lua /root/.config/nvim/pack/copilot/start/copilot-config/plugin/copilot_completeopt.lua
 
 # nvim-treesitter

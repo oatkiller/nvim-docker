@@ -171,6 +171,9 @@ mkdir -p ~/.config/nvim/pack/copilot/start
 if [ ! -d ~/.config/nvim/pack/copilot/start/CopilotChat.nvim ]; then
   git clone https://github.com/CopilotC-Nvim/CopilotChat.nvim.git ~/.config/nvim/pack/copilot/start/CopilotChat.nvim
 fi
+if [ ! -d ~/.config/nvim/pack/copilot/start/copilot.vim ]; then
+  git clone https://github.com/github/copilot.vim.git ~/.config/nvim/pack/copilot/start/copilot.vim
+fi
 
 # Custom Copilot completeopt config (native package management)
 mkdir -p ~/.config/nvim/pack/copilot/start/copilot-config/plugin
@@ -211,4 +214,7 @@ nvim --headless "+TSInstallSync! typescript tsx" +qa
 echo "Neovim config and plugins installed successfully!"
 
 echo "Running OatHealth check..."
-nvim --headless -c "checkhealth oathealth" -c "q" 
+nvim --headless -c "checkhealth oathealth" -c "q"
+
+# fzf
+git clone https://github.com/junegunn/fzf.git ~/.fzf --depth 1
