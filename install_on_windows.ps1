@@ -35,6 +35,7 @@ $requiredDependencies = @{
     "node"   = "nodejs"
     "npm"    = "nodejs"
     "nvim"   = "neovim"
+    "gcc"    = "mingw"
 }
 
 # Check for missing dependencies
