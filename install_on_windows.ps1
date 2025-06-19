@@ -183,7 +183,7 @@ Install-Plugin -PackName "ts-comments" -PluginName "ts-comments.nvim" -RepoUrl "
 # OatHealth Plugin
 $oathealthDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", "oathealth", "start", "oathealth", "lua", "oathealth")
 New-Item -Path $oathealthDir -ItemType Directory -Force | Out-Null
-Copy-Item -Path ".\pack\oathealth\start\oathealth\lua\oathealth\health.lua" -Destination $oathealthDir
+Copy-Item -Path ([System.IO.Path]::Combine($PSScriptRoot, "pack", "oathealth", "start", "oathealth", "lua", "oathealth", "health.lua")) -Destination $oathealthDir
 
 # Pre-install Treesitter parsers
 Write-Host "Installing Treesitter parsers..."
