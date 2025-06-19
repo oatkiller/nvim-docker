@@ -1,6 +1,39 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+--------------------------------------------------------------------------------
+-- Helper usable from any buffer ------------------------------------------------
+--------------------------------------------------------------------------------
+
+local function perform_ts_source_action(kind)
+  -- Ensure a ts_ls client is attached to the current buffer.
+  local ts_attached = false
+  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    if client.name == 'ts_ls' then
+      ts_attached = true
+      break
+    end
+  end
+
+  if not ts_attached then
+    vim.notify('ts_ls not active in this buffer.', vim.log.levels.WARN)
+    return
+  end
+
+  local picked
+  vim.lsp.buf.code_action({
+    context = { only = { kind } },
+    apply = true,
+    filter = function()
+      if picked then
+        return false
+      end
+      picked = true
+      return true
+    end,
+  })
+end
+
 local function on_attach(client, bufnr)
   -- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
   -- `vim.lsp.buf.code_action()` if specified in `context.only`.
@@ -24,21 +57,38 @@ local function on_attach(client, bufnr)
     -- each `only` filter is guaranteed to return at most one action.
     -----------------------------------------------------------------------------
 
-    -- Add all missing imports
-    vim.api.nvim_buf_create_user_command(0, 'LspTypescriptAddMissingImports', function()
+    -- Helper that applies the first available TypeScript source action matching
+    -- the requested `kind` by delegating to the built-in `vim.lsp.buf.code_action`.
+    -- We rely on its async behaviour, but use a custom `filter` so exactly one
+    -- action remains (allowing the `apply = true` option to work with no prompt).
+    local function apply_ts_source_action(kind)
+      local picked = false
       vim.lsp.buf.code_action({
-        context = { only = { 'source.addMissingImports.ts' } },
+        context = { only = { kind } },
         apply = true,
+        filter = function(action)
+          -- Keep the first matching action, discard the rest so `apply` kicks in.
+          if picked then
+            return false
+          end
+          picked = true
+          return true
+        end,
       })
-    end, {})
+      -- When no action was applied, `vim.lsp.buf.code_action` will have shown
+      -- the usual "No code actions available" notification, so no extra message
+      -- is needed here.
+    end
+
+    -- Add all missing imports
+    vim.api.nvim_buf_create_user_command(bufnr, 'LspTsAddMissingImports', function()
+      perform_ts_source_action('source.addMissingImports.ts')
+    end, { desc = 'Add all missing imports (TypeScript)' })
 
     -- Remove all unused code (imports, variables, etc.)
-    vim.api.nvim_buf_create_user_command(0, 'LspTypescriptRemoveUnused', function()
-      vim.lsp.buf.code_action({
-        context = { only = { 'source.removeUnused.ts' } },
-        apply = true,
-      })
-    end, {})
+    vim.api.nvim_buf_create_user_command(bufnr, 'LspTsRemoveUnused', function()
+      perform_ts_source_action('source.removeUnused.ts')
+    end, { desc = 'Remove unused code (TypeScript)' })
   end
 
   local map = function(mode, lhs, rhs, desc)
@@ -156,18 +206,10 @@ end, { silent = true, desc = "LSP: Source Actions (TypeScript)" })
 
 -- <leader>ai → Add all missing imports (TypeScript)
 vim.keymap.set('n', '<leader>ai', function()
-  if vim.fn.exists(':LspTypescriptAddMissingImports') == 2 then
-    vim.cmd('silent! LspTypescriptAddMissingImports')
-  else
-    vim.notify('Add-Missing-Imports action not available in this buffer.', vim.log.levels.WARN)
-  end
+  perform_ts_source_action('source.addMissingImports.ts')
 end, { silent = true, desc = 'LSP: Add Missing Imports (TypeScript)' })
 
 -- <leader>ru → Remove all unused code (TypeScript)
 vim.keymap.set('n', '<leader>ru', function()
-  if vim.fn.exists(':LspTypescriptRemoveUnused') == 2 then
-    vim.cmd('silent! LspTypescriptRemoveUnused')
-  else
-    vim.notify('Remove-Unused action not available in this buffer.', vim.log.levels.WARN)
-  end
+  perform_ts_source_action('source.removeUnused.ts')
 end, { silent = true, desc = 'LSP: Remove Unused (TypeScript)' }) 
