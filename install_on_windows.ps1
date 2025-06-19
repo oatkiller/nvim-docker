@@ -168,7 +168,7 @@ Install-Plugin -PackName "lsp-file-ops" -PluginName "nvim-lsp-file-operations" -
 # CopilotChat.nvim & config
 Install-Plugin -PackName "copilot" -PluginName "CopilotChat.nvim" -RepoUrl "https://github.com/CopilotC-Nvim/CopilotChat.nvim.git"
 # Special case for copilot config due to nested path
-$copilotConfigSrc = ".\pack\copilot\copilot-config\plugin\copilot_completeopt.lua"
+$copilotConfigSrc = [System.IO.Path]::Combine($PSScriptRoot, "pack", "copilot", "copilot-config", "plugin", "copilot_completeopt.lua")
 $copilotConfigDestDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", "copilot", "start", "copilot-config", "plugin")
 New-Item -Path $copilotConfigDestDir -ItemType Directory -Force | Out-Null
 Copy-Item -Path $copilotConfigSrc -Destination $copilotConfigDestDir
