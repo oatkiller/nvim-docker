@@ -20,14 +20,42 @@ if [ ${#MISSING[@]} -ne 0 ]; then
   exit 1
 fi
 
-# Install Nerd Font for icons
-echo "Checking for Nerd Font..."
-if brew list --cask font-firacode-nerd-font >/dev/null 2>&1; then
-  echo "FiraCode Nerd Font is already installed."
+# Install a Nerd Font (required for several plugins)
+echo "Checking for any installed Nerd Font..."
+
+# Function to test if at least one nerd font is already installed via Homebrew
+has_nerd_font() {
+  brew list --cask 2>/dev/null | grep -q "-nerd-font$"
+}
+
+if has_nerd_font; then
+  echo "Nerd Font already present. Skipping installation."
 else
-  echo "Installing FiraCode Nerd Font..."
-  brew tap homebrew/cask-fonts
-  brew install --cask font-firacode-nerd-font
+  echo "No Nerd Font found. Attempting installation..."
+  # Preferred fonts to try in order. Feel free to adjust the list.
+  CANDIDATE_FONTS=(
+    font-fira-code-nerd-font
+    font-hack-nerd-font
+    font-jetbrains-mono-nerd-font
+  )
+
+  INSTALLED=0
+  for font in "${CANDIDATE_FONTS[@]}"; do
+    if brew info --cask "$font" >/dev/null 2>&1; then
+      echo "Installing $font ..."
+      if brew install --cask "$font"; then
+        INSTALLED=1
+        break
+      else
+        echo "[WARN] Failed to install $font, trying next candidate..."
+      fi
+    fi
+  done
+
+  if [ $INSTALLED -eq 0 ]; then
+    echo "[ERROR] Unable to install a Nerd Font automatically. Please install one manually (e.g. 'brew install --cask font-fira-code-nerd-font') and re-run this script." >&2
+    exit 1
+  fi
 fi
 
 # Check Node.js version (require >=20)
