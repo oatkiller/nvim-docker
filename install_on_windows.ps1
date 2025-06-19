@@ -193,6 +193,13 @@ Install-Plugin -PackName "nvim-treesitter" -PluginName "nvim-treesitter-textobje
 # ts-comments
 Install-Plugin -PackName "ts-comments" -PluginName "ts-comments.nvim" -RepoUrl "https://github.com/folke/ts-comments.nvim.git" -ConfigRelativePath "pack\ts-comments\start\ts-comments-config\plugin\ts-comments-config.lua"
 
+# OatVim Colorschemes
+Write-Host "Installing OatVim colorschemes..."
+$oatColorsSource = [System.IO.Path]::Combine($PSScriptRoot, "pack", "oat-colors")
+$oatColorsDest = [System.IO.Path]::Combine($nvimConfigPath, "pack")
+New-Item -Path $oatColorsDest -ItemType Directory -Force | Out-Null
+Copy-Item -Path $oatColorsSource -Destination $oatColorsDest -Recurse
+
 # OatHealth Plugin
 $oathealthDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", "oathealth", "start", "oathealth", "lua", "oathealth")
 New-Item -Path $oathealthDir -ItemType Directory -Force | Out-Null

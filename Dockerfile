@@ -112,6 +112,9 @@ RUN git clone https://github.com/folke/ts-comments.nvim.git /root/.config/nvim/p
 RUN mkdir -p /root/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin
 COPY pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua /root/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua
 
+# OatVim Colorschemes
+COPY pack/oat-colors /root/.config/nvim/pack/oat-colors
+
 # OatHealth Plugin
 COPY pack/oathealth/start/oathealth/lua/oathealth/health.lua /root/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
 

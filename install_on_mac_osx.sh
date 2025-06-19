@@ -195,6 +195,11 @@ fi
 mkdir -p ~/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin
 cp ./pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua ~/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua
 
+# OatVim Colorschemes
+echo "Installing OatVim colorschemes..."
+mkdir -p ~/.config/nvim/pack
+cp -R ./pack/oat-colors ~/.config/nvim/pack/
+
 # OatHealth Plugin
 mkdir -p ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth
 cp ./pack/oathealth/start/oathealth/lua/oathealth/health.lua ~/.config/nvim/pack/oathealth/start/oathealth/lua/oathealth/health.lua
