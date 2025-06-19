@@ -2,11 +2,6 @@
 --
 -- Provides commands to cycle through the OatVim colorschemes.
 
--- Exit if the oat-colors pack doesn't seem to be installed.
-if not pcall(require, 'oat-desert') then
-  return
-end
-
 local M = {}
 
 -- List of available OatVim colorschemes
