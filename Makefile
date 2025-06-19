@@ -14,3 +14,12 @@ install:
 	mkdir -p ~/.local/bin
 	cp ./scripts/nvim-docker ~/.local/bin/nvim-docker
 	chmod +x ~/.local/bin/nvim-docker
+
+checkhealth:
+	docker run --rm \
+		-v $(shell pwd)/nvim-config:/root/.config/nvim \
+		-v $(shell pwd)/pack:/root/.config/nvim/pack \
+		nvim-docker \
+		nvim --headless -c "checkhealth oathealth" -c "q"
+
+.PHONY: build run

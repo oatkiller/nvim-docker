@@ -133,7 +133,9 @@ Install-Plugin -PackName "lsp" -PluginName "nvim-lspconfig" -RepoUrl "https://gi
 Install-Plugin -PackName "fzf" -PluginName "fzf" -RepoUrl "https://github.com/junegunn/fzf.git"
 $fzfInstallScript = [System.IO.Path]::Combine($nvimConfigPath, "pack", "fzf", "start", "fzf", "install.ps1")
 if (Test-Path $fzfInstallScript) {
+    $currentPath = Get-Location
     & $fzfInstallScript
+    Set-Location $currentPath
 } else {
     # Fallback for older fzf versions or if install.ps1 is missing
      $fzfExe = [System.IO.Path]::Combine($nvimConfigPath, "pack", "fzf", "start", "fzf", "bin", "fzf.exe")
@@ -190,4 +192,7 @@ Copy-Item -Path ([System.IO.Path]::Combine($PSScriptRoot, "pack", "oathealth", "
 Write-Host "Installing Treesitter parsers..."
 nvim --headless "+TSInstallSync! typescript tsx" +qa
 
-Write-Host "Neovim config and plugins installed successfully!" 
+Write-Host "Neovim config and plugins installed successfully!"
+
+Write-Host "Running OatHealth check..."
+nvim --headless -c "checkhealth oathealth" -c "q" 
