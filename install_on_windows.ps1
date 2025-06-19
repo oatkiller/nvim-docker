@@ -66,7 +66,7 @@ Write-Host "Installing global npm packages: typescript-language-server, typescri
 npm install -g typescript-language-server typescript @tailwindcss/language-server prettier eslint_d
 
 # Define Neovim config path
-$nvimConfigPath = Join-Path $env:LOCALAPPDATA "nvim"
+$nvimConfigPath = [System.IO.Path]::Combine($env:LOCALAPPDATA, "nvim")
 
 # Check if nvim config exists
 if (Test-Path $nvimConfigPath) {
@@ -97,11 +97,11 @@ function Install-Plugin {
         [string]$ConfigRelativePath = ""
     )
 
-    $packDir = Join-Path $nvimConfigPath "pack" $PackName "start"
+    $packDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", $PackName, "start")
     New-Item -Path $packDir -ItemType Directory -Force | Out-Null
 
     if ($PluginName -and $RepoUrl) {
-        $pluginDir = Join-Path $packDir $PluginName
+        $pluginDir = [System.IO.Path]::Combine($packDir, $PluginName)
         if (-not (Test-Path $pluginDir)) {
             Write-Host "Cloning $PluginName..."
             git clone --depth 1 $RepoUrl $pluginDir
@@ -109,10 +109,10 @@ function Install-Plugin {
     }
 
     if ($ConfigRelativePath) {
-        $sourcePath = Join-Path $PSScriptRoot $ConfigRelativePath
-        $destPath = Join-Path $nvimConfigPath (Split-Path $ConfigRelativePath -Parent)
+        $sourcePath = [System.IO.Path]::Combine($PSScriptRoot, $ConfigRelativePath)
+        $destPath = [System.IO.Path]::Combine($nvimConfigPath, (Split-Path $ConfigRelativePath -Parent))
         New-Item -Path $destPath -ItemType Directory -Force | Out-Null
-        Copy-Item -Path $sourcePath -Destination (Join-Path $destPath (Split-Path $sourcePath -Leaf))
+        Copy-Item -Path $sourcePath -Destination ([System.IO.Path]::Combine($destPath, (Split-Path $sourcePath -Leaf)))
     }
 }
 
@@ -130,12 +130,12 @@ Install-Plugin -PackName "lsp" -PluginName "nvim-lspconfig" -RepoUrl "https://gi
 
 # fzf and fzf.vim
 Install-Plugin -PackName "fzf" -PluginName "fzf" -RepoUrl "https://github.com/junegunn/fzf.git"
-$fzfInstallScript = Join-Path $nvimConfigPath "pack\fzf\start\fzf\install.ps1"
+$fzfInstallScript = [System.IO.Path]::Combine($nvimConfigPath, "pack", "fzf", "start", "fzf", "install.ps1")
 if (Test-Path $fzfInstallScript) {
     & $fzfInstallScript
 } else {
     # Fallback for older fzf versions or if install.ps1 is missing
-     $fzfExe = Join-Path $nvimConfigPath "pack\fzf\start\fzf\bin\fzf.exe"
+     $fzfExe = [System.IO.Path]::Combine($nvimConfigPath, "pack", "fzf", "start", "fzf", "bin", "fzf.exe")
      if (Test-Path $fzfExe) {
         Write-Host "fzf.exe found, skipping install script."
      } else {
@@ -169,7 +169,7 @@ Install-Plugin -PackName "lsp-file-ops" -PluginName "nvim-lsp-file-operations" -
 Install-Plugin -PackName "copilot" -PluginName "CopilotChat.nvim" -RepoUrl "https://github.com/CopilotC-Nvim/CopilotChat.nvim.git"
 # Special case for copilot config due to nested path
 $copilotConfigSrc = ".\pack\copilot\copilot-config\plugin\copilot_completeopt.lua"
-$copilotConfigDestDir = Join-Path $nvimConfigPath "pack\copilot\start\copilot-config\plugin"
+$copilotConfigDestDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", "copilot", "start", "copilot-config", "plugin")
 New-Item -Path $copilotConfigDestDir -ItemType Directory -Force | Out-Null
 Copy-Item -Path $copilotConfigSrc -Destination $copilotConfigDestDir
 
@@ -181,7 +181,7 @@ Install-Plugin -PackName "nvim-treesitter" -PluginName "nvim-treesitter-textobje
 Install-Plugin -PackName "ts-comments" -PluginName "ts-comments.nvim" -RepoUrl "https://github.com/folke/ts-comments.nvim.git" -ConfigRelativePath "pack\ts-comments\start\ts-comments-config\plugin\ts-comments-config.lua"
 
 # OatHealth Plugin
-$oathealthDir = Join-Path $nvimConfigPath "pack\oathealth\start\oathealth\lua\oathealth"
+$oathealthDir = [System.IO.Path]::Combine($nvimConfigPath, "pack", "oathealth", "start", "oathealth", "lua", "oathealth")
 New-Item -Path $oathealthDir -ItemType Directory -Force | Out-Null
 Copy-Item -Path ".\pack\oathealth\start\oathealth\lua\oathealth\health.lua" -Destination $oathealthDir
 
