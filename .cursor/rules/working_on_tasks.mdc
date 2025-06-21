@@ -1,0 +1,34 @@
+---
+description: 
+globs: tasks/**/*
+alwaysApply: false
+---
+## Task Workflow
+
+
+1.  **Consult Story Splitting Guidance**:
+    -   Read and internalize the principles from ['Why Story Splitting Matters - Abridged'](mdc:tasks/why_story_splitting_matters_abridged.md).
+    -   Read and follow the logic from the [Story Splitting Flowchart](mdc:tasks/story_splitting_flowchart.md).
+
+2.  **Read the Task**: Start by thoroughly reading the task description in its corresponding `.md` file.
+
+3.  **Update Task with Planning Poker**:
+    -   Append a "Planning Poker" section to the bottom of the task's `.md` file.
+    -   This section should contain a simulated conversation among a scrum team:
+        -   1 Scrum Master
+        -   1 Stakeholder
+        -   3 Developers
+        -   1 UX Designer
+        -   1 Quality Engineer
+    -   The conversation should revolve around estimating the task's complexity, culminating in a final complexity estimate (e.g., story points).
+    - The conversation should focus on 'grooming the story':
+      *  **Groom the Story**:
+        -   Based on the story splitting guidance, evaluate if the current task is too large or complex.
+        -   If so, split the task into smaller, more manageable user stories. This may involve:
+            -   Creating new `.md` files for the new stories.
+            -   Updating the original task file to reference the new, smaller stories.
+            -   Marking the original large story as an "epic" or a "theme" that is now composed of the smaller stories.
+
+4.  **Work on INVEST-Compliant Tasks**:
+    -   A task can only be worked on if it meets the **INVEST** criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable), as detailed in 'Why Story Splitting Matters'.
+    -   The agent can always choose to perform story grooming (steps 1-4) on any task in the backlog.
