@@ -1,43 +1,105 @@
-# Story Splitting Flowchart (Text Version)
+```mermaid
+graph TD
+    %% Part 1: Prepare the Input Story
+    subgraph "PREPARE THE INPUT STORY"
+        N1("<b>PREPARE THE INPUT STORY</b>")
+        N1 --> N2{"Does the big story satisfy INVEST (except, perhaps, small)?"}
+        
+        N2 -- "YES" --> N3{"Is the story size 1/10 to 1/6 of your velocity?"}
+        N3 --> N4("You're done.")
+        N3 --> N5("Continue. You need to split it.")
+        
+        N2 -- "NO" --> N6("Combine it with another story or otherwise reformulate it to get a good, if large, starting story.")
+        N6 --> N5
+    end
 
-This flowchart helps guide the process of splitting a large user story into smaller, manageable pieces.
+    %% Part 2: Apply the Splitting Patterns
+    subgraph "APPLY THE SPLITTING PATTERNS"
+        N5 --> N7("<b>APPLY THE SPLITTING PATTERNS</b><br/>(This is a central hub, with various splitting patterns branching off)")
+        
+        N7 --> N8{"Does the story describe a workflow?"}
+        N8 --> N9("<b>WORKFLOW STEPS</b>")
+        N9 --> N10("Can you split the story so you do the beginning and end of the workflow first and enhance with stories from the middle of the workflow?")
+        N9 --> N11("Can you take a thin slice through the workflow first and enhance it with more stories later?")
 
-## Part 1: Prepare the Story for Splitting
+        N7 --> N12{"Does the story get much of its complexity from satisfying non-functional requirements like performance?"}
+        N12 --> N13("<b>DEFER PERFORMANCE</b>")
+        N13 --> N14("Could you split the story to just make it work first and then enhance it to satisfy the non-functional requirement?")
 
-1.  **Check for Value (INVEST)**:
-    -   Does the story deliver a tangible, vertical slice of value to a user?
-    -   **If NO**: The story is likely a task or component. Combine it with other pieces until you have a feature that provides real user value. Do not proceed until the story is valuable.
-    -   **If YES**: Proceed to the next step.
+        N7 --> N15{"Does the story have a simple core that provides most of the value and/or learning?"}
+        N15 --> N16("<b>SIMPLE/COMPLEX</b>")
+        N16 --> N17("Could you split the story to do that simple core first and enhance it with later stories?")
 
-2.  **Check for Size (INVEST)**:
-    -   Is the story small enough to be completed quickly (e.g., 6-10 stories per sprint)?
-    -   **If NO**: The story is too big and needs to be split. Proceed to Part 2.
-    -   **If YES**: The story is already well-sized. No splitting is needed.
+        N7 --> N18{"When you apply the obvious split, is whichever story you do first the most difficult?"}
+        N18 --> N19("<b>MAJOR EFFORT</b>")
+        N19 --> N20("Could you group the later stories and defer the decision about which story comes first?")
 
-## Part 2: Apply Splitting Patterns
+        N7 --> N21{"Does the story include multiple operations?<br/>(e.g. is it about 'managing' or 'configuring' something?)"}
+        N21 --> N22("<b>OPERATIONS</b>")
+        N22 --> N23("Can you split the operations into separate stories?")
 
-Try to split the story using one or more of the following patterns. See ['Why Story Splitting Matters - Abridged'](mdc:tasks/why_story_splitting_matters_abridged.md) for details on each.
+        N7 --> N24{"Does the story have a variety of business rules?<br/>(e.g. is there a domain term in the story like 'flexible dates' that suggests several variations?)"}
+        N24 --> N25("<b>BUSINESS RULE VARIATIONS</b>")
+        N25 --> N26("Can you split the story so you do a subset of the rules first and enhance with additional rules later?")
 
--   **Pattern 1: Workflow Steps** (e.g., Simple end-to-end path first, then add complexity).
--   **Pattern 2: Operations** (e.g., CRUD: Create, Read, Update, Delete).
--   **Pattern 3: Business Rule Variations** (e.g., One story per business rule).
--   **Pattern 4: Variations in Data** (e.g., One story per data type).
--   **Pattern 5: Data Entry Methods** (e.g., Simple UI first, then fancy UI).
--   **Pattern 6: Major Effort** (e.g., "Implement for one" then "extend to all").
--   **Pattern 7: Simple/Complex** (e.g., Separate the core simple case from complex variations).
--   **Pattern 8: Defer Performance** (e.g., "Make it work" then "make it fast").
--   **Pattern 9: Break Out a Spike** (e.g., A time-boxed investigation to reduce uncertainty).
+        N7 --> N27{"Does the story do the same thing to different kinds of data?"}
+        N27 --> N28("<b>VARIATIONS IN DATA</b>")
+        N28 --> N29("Can you split the story to process one kind of data first and enhance with the other kinds later?")
 
-*Hint: If multiple patterns apply, proceed to Part 3 to evaluate which split is best.*
+        N7 --> N30{"Does the story have a complex interface?"}
+        N30 --> N31("<b>INTERFACE VARIATIONS</b>")
+        N31 --> N32("Can you split the story to handle data from one interface first and enhance with the others later?")
 
-## Part 3: Evaluate the Split
+        N7 --> N33{"Does the story get the same kind of data via multiple interfaces?"}
+        N33 --> N31
 
-Once you have a potential split, ask these questions:
+        N7 --> N34("Is there a simple version you could do first?")
 
-1.  **Does the split allow you to discard or deprioritize something?**
-    -   A good split often isolates the high-value core from lower-value "nice-to-haves". Choose the split that allows the Product Owner to discard the low-value parts.
+        N7 --> N35{"Are you still baffled about how to split the story?"}
+        N35 --> N36("<b>BREAK OUT A SPIKE</b>")
+        N36 --> N37{"Can you find a small piece you understand well enough to start?"}
+        N37 --> N38("Write that story first, build it, and start again at the top of this process.")
+        N38 --> N1
+        N36 --> N39{"Can you define the 1-3 questions most holding you back?"}
+        N39 --> N40("Write a spike with those questions, do the minimum to answer them, and start again at the top of this process.")
+        N40 --> N1
+        N39 --> N41("Take a break and try again.")
+    end
 
-2.  **Does the split result in roughly equal-sized stories?**
-    -   A split that creates four 2-point stories is generally better than one that creates a 5-point story and a 3-point story, as it provides more flexibility for planning.
+    %% Part 3: Evaluate the Split
+    subgraph "EVALUATE THE SPLIT"
+        %% Connections from patterns to evaluation
+        N10 --> N42("<b>EVALUATE THE SPLIT</b>")
+        N11 --> N42
+        N14 --> N42
+        N17 --> N42
+        N20 --> N42
+        N23 --> N42
+        N26 --> N42
+        N29 --> N42
+        N32 --> N42
+        N34 --> N42
+        N41 --> N42
 
-If the resulting stories are still too big, apply the flowchart to them recursively. 
+        N42 --> N43{"Are the new stories roughly equal in size?"}
+        N43 -- "NO" --> N44("Try another pattern on the original story or the larger post-split stories.")
+        N44 --> N7
+
+        N43 -- "YES" --> N45{"Is each story about 1/10 to 1/6 of your velocity?"}
+        N45 -- "YES" --> N49
+        N45 -- "NO" --> N46{"Do each of the stories satisfy INVEST?"}
+        N46 -- "YES" --> N49
+        N46 -- "NO" --> N47{"Are there stories you can deprioritize or delete?"}
+        N47 -- "YES" --> N49
+        N47 -- "NO" --> N48{"Is there an obvious story to start with that gets you early value, learning, risk mitigation, etc.?"}
+        N48 -- "YES" --> N49("You're done, though you could try another pattern to see if it works better.")
+        N48 -- "NO" --> N50("Try another pattern to see if you can get this.")
+        N50 --> N7
+    end
+    
+    %% Styling
+    style N1 fill:#c9f,stroke:#333,stroke-width:2px
+    style N7 fill:#c9f,stroke:#333,stroke-width:2px
+    style N42 fill:#c9f,stroke:#333,stroke-width:2px
+    style N4,N49 fill:#bfa,stroke:#333,stroke-width:2px
+``` 
