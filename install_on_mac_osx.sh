@@ -66,9 +66,9 @@ if [ "$NODE_VERSION" -lt 20 ]; then
   exit 1
 fi
 
-# Install global npm packages for LSPs
-echo "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server, prettier, eslint_d"
-npm install -g typescript-language-server typescript @tailwindcss/language-server prettier eslint_d
+# Install global npm packages for LSPs (including JSON)
+echo "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server, vscode-langservers-extracted, prettier, eslint_d"
+npm install -g typescript-language-server typescript @tailwindcss/language-server vscode-langservers-extracted prettier eslint_d
 
 # Parse arguments for -f or --force
 FORCE=0
@@ -127,6 +127,10 @@ fi
 mkdir -p ~/.config/nvim/pack/lsp/start
 if [ ! -d ~/.config/nvim/pack/lsp/start/nvim-lspconfig ]; then
   git clone https://github.com/neovim/nvim-lspconfig ~/.config/nvim/pack/lsp/start/nvim-lspconfig
+fi
+# schemastore.nvim (JSON Schema catalog)
+if [ ! -d ~/.config/nvim/pack/lsp/start/schemastore.nvim ]; then
+  git clone https://github.com/b0o/schemastore.nvim ~/.config/nvim/pack/lsp/start/schemastore.nvim
 fi
 mkdir -p ~/.config/nvim/pack/lsp/start/lsp-config/plugin
 cp ./pack/lsp/start/lsp-config/plugin/lsp_config.lua ~/.config/nvim/pack/lsp/start/lsp-config/plugin/lsp_config.lua

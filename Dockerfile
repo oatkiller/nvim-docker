@@ -21,8 +21,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
 # Install TypeScript LSP and TypeScript
 RUN npm install -g typescript-language-server typescript
 
-# Install Tailwind CSS Language Server
-RUN npm install -g @tailwindcss/language-server
+# Install Tailwind CSS Language Server and JSON Language Server
+RUN npm install -g @tailwindcss/language-server vscode-langservers-extracted
 
 # -----------------------------------------------------------------------------
 # NOTE: We intentionally fetch the *ARM64* build of Neovim here.  This container
@@ -53,6 +53,8 @@ RUN git clone https://github.com/petertriho/cmp-git /root/.config/nvim/pack/cmp/
 # lspconfig
 RUN mkdir -p /root/.config/nvim/pack/lsp/start
 RUN git clone https://github.com/neovim/nvim-lspconfig /root/.config/nvim/pack/lsp/start/nvim-lspconfig
+# schemastore.nvim (JSON Schema catalog)
+RUN git clone https://github.com/b0o/schemastore.nvim /root/.config/nvim/pack/lsp/start/schemastore.nvim
 COPY pack/lsp/start/lsp-config/plugin/lsp_config.lua /root/.config/nvim/pack/lsp/start/lsp-config/plugin/lsp_config.lua
 
 # fzf and fzf.vim

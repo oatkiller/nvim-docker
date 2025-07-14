@@ -185,6 +185,24 @@ lspconfig.tailwindcss.setup({
   capabilities = capabilities,
 })
 
+-- Setup for jsonls with JSON Schema support
+local ok, schemastore = pcall(require, 'schemastore')
+local json_schemas = {}
+if ok then
+  json_schemas = schemastore.json.schemas()
+end
+
+lspconfig.jsonls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = json_schemas,
+      validate = { enable = true },
+    },
+  },
+})
+
 -- -----------------------------------------------------------------------------
 -- Global keymap: <leader>oi → Organize Imports (TypeScript)
 --

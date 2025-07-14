@@ -1,1 +1,2 @@
-Hitting `q` in normal mode seems to have a copilotchat error.
+- [x] Hitting `q` in normal mode seems to have a copilotchat error.
+- [ ] dependency versions are not locked.

@@ -73,8 +73,8 @@ if ($nodeVersion -lt 20) {
 }
 
 # Install global npm packages for LSPs
-Write-Host "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server, prettier, eslint_d"
-npm install -g typescript-language-server typescript @tailwindcss/language-server prettier eslint_d
+Write-Host "Installing global npm packages: typescript-language-server, typescript, @tailwindcss/language-server, vscode-langservers-extracted, prettier, eslint_d"
+npm install -g typescript-language-server typescript @tailwindcss/language-server vscode-langservers-extracted prettier eslint_d
 
 # Define Neovim config path
 $nvimConfigPath = [System.IO.Path]::Combine($env:LOCALAPPDATA, "nvim")
@@ -138,6 +138,9 @@ Install-Plugin -PackName "nvim-cmp" -PluginName "cmp-git" -RepoUrl "https://gith
 
 # lspconfig
 Install-Plugin -PackName "lsp" -PluginName "nvim-lspconfig" -RepoUrl "https://github.com/neovim/nvim-lspconfig" -ConfigRelativePath "pack\lsp\start\lsp-config\plugin\lsp_config.lua"
+
+# schemastore.nvim for JSON Schema support
+Install-Plugin -PackName "lsp" -PluginName "schemastore.nvim" -RepoUrl "https://github.com/b0o/schemastore.nvim.git"
 
 # fzf and fzf.vim
 Install-Plugin -PackName "fzf" -PluginName "fzf" -RepoUrl "https://github.com/junegunn/fzf.git"
