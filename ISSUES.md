@@ -1,0 +1,1 @@
+Hitting `q` in normal mode seems to have a copilotchat error.
