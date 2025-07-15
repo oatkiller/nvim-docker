@@ -1,23 +1,79 @@
-# Neovim Plugins Installed
 
-This project installs the following Neovim plugins directly (without a plugin manager):
+# Using Neovim with Docker
 
-| Plugin Name      | GitHub URL                                         | Description                                                      |
-|------------------|----------------------------------------------------|------------------------------------------------------------------|
-| nvim-lspconfig   | https://github.com/neovim/nvim-lspconfig           | Configurations for built-in LSP support in Neovim                |
-| fzf              | https://github.com/junegunn/fzf                    | General-purpose command-line fuzzy finder, with Vim/Neovim plugin |
-| fzf.vim          | https://github.com/junegunn/fzf.vim                | Vim/Neovim plugin that integrates fzf with useful commands        |
-| nvim-cmp         | https://github.com/hrsh7th/nvim-cmp                  | Autocompletion plugin for Neovim                                      |
+This repository provides a blueprint and installer scripts to build and run a complete, ready-to-use Neovim environment using Docker. Follow the steps below to build the Docker image and run Neovim inside a container.
 
-These plugins are installed automatically by the Dockerfile and the install_on_mac_osx.sh script. 
+## 1. Build the Docker Image
 
-> **Platform note:**  The Docker image fetches the *ARM64* build of Neovim (see the comment in the `Dockerfile`).  This is intentional because the container is meant to be run on Apple-Silicon (M-series) Macs where Docker Desktop executes arm64 layers natively.  If you plan to build or run the image on an x86-64 host, change the download URL to `nvim-linux64.tar.gz` or another architecture-appropriate release.
+You can build the Docker image using the provided `Makefile` or directly with Docker:
 
-# Adding new plugins
+**Using Makefile:**
+```sh
+make build
+```
 
-To add a new plugin:
+**Or directly with Docker:**
+```sh
+docker build . -t nvim-docker
+```
 
-1. Add it to this README.md file
-1. If the plugin requries dependencies, add those as well. When changing dependencies, evaluate the dependency graph and ensure the right dependencies are added.
-2. Add lines to `Dockerfile` that git clone or otherwise add the plugin files to the container. Also add any required lines to run install commands. 
-3. Add corresponding lines to `./install_on_mac_osx.sh` that install the same plugins / dependencies.
+This will create a Docker image named `nvim-docker` with all required dependencies, plugins, and configuration.
+
+## 2. Run Neovim in Docker
+
+You can run Neovim inside the Docker container using the Makefile or directly with Docker:
+
+**Using Makefile:**
+```sh
+make run
+```
+
+**Or directly with Docker:**
+```sh
+docker run -it --rm --name nvim-container -v $(pwd):/workspace nvim-docker
+```
+
+This will start a container, mount your current directory to `/workspace` inside the container, and launch Neovim.
+
+## 3. (Recommended) Use the Provided Script
+
+For convenience, a script is provided to make running Neovim in Docker as easy as running a local command:
+
+### Install the Script
+
+```sh
+make install
+```
+
+This will copy the script to `~/.local/bin/nvim-docker` and make it executable. Ensure `~/.local/bin` is in your `$PATH`.
+
+### Usage
+
+From any project directory, simply run:
+```sh
+nvim-docker
+```
+
+This will launch Neovim inside the Docker container, mounting your current working directory for seamless editing.
+
+You can pass any arguments to Neovim as usual:
+```sh
+nvim-docker myfile.txt
+```
+
+## 4. Health Check (Optional)
+
+To check the health of your Neovim environment (including custom health checks):
+
+```sh
+make checkhealth
+```
+
+This will run Neovim's health checks inside the Docker container.
+
+---
+
+**Note:**
+- The Dockerfile is configured for Apple Silicon (ARM64). If you are on x86-64, you may need to adjust the Neovim download URL in the Dockerfile.
+- All plugins and configuration are managed via the `pack` and `nvim-config` directories and are automatically set up during the Docker build.
+- For more details on the structure and plugin management, see [CONTRIBUTING.md](CONTRIBUTING.md).
