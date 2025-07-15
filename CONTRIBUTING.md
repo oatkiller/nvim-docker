@@ -1,8 +1,6 @@
-# AI-Assisted Plugin Management
+# Instructions for contributing
 
-This document outlines the process for adding new Neovim plugins to this configuration, with a focus on leveraging AI assistance for a streamlined workflow.
-
-**Important**: This repository is not a Neovim configuration itself. Rather, it is a blueprint and a set of installers (`install_on_mac_osx.sh` and `Dockerfile`) that build a complete, ready-to-use Neovim environment. The plugin source code is not stored here; it is cloned during the installation process.
+**Important**: This repository is not a Neovim configuration itself. Rather, it is a blueprint and a set of installers (`install_on_mac_osx.sh`, `install_on_windows.ps1`, `Makefile`, and `Dockerfile`) that build a complete, ready-to-use Neovim environment. The sources for plugins is not stored here; it is cloned during the installation process.
 
 ## Guiding Principles
 
@@ -12,7 +10,7 @@ This document outlines the process for adding new Neovim plugins to this configu
 
 - **Co-located dependencies**: A plugin and its dependencies should be grouped together in the same pack. For example, `nvim-cmp` and all of its `cmp-*` sources are located in `pack/cmp/`. This makes it easy to manage related plugins as a single unit.
 
-- **Mirrored repository structure**: The `pack` directory in this repository is a blueprint for the final Neovim configuration. The installation scripts (`install_on_mac_osx.sh` and `Dockerfile`) are responsible for replicating this structure in the user's configuration directory (`~/.config/nvim` or `/root/.config/nvim`).
+- **Mirrored repository structure**: The `pack` directory in this repository is a blueprint for the final Neovim configuration. The installation scripts are responsible for replicating this structure in the user's configuration directory (`~/.config/nvim` or `/root/.config/nvim`).
 
 - **Configuration as plugins**: Custom configurations are written as separate plugins. This keeps the main `init.lua` clean and allows for modular and targeted configuration. For example, the configuration for `nvim-cmp` is located at `pack/cmp/start/cmp-config/plugin/cmp_config.lua` and is loaded automatically because it's in a `start` directory.
 
@@ -32,6 +30,7 @@ To add a new plugin, follow these steps:
     -   **`install_on_mac_osx.sh`**: Add the necessary `git clone` commands to install the new plugin(s) and `cp` or `mkdir` and `cp` commands to create your configuration plugin directory and file.
     -   **`install_on_windows.ps1`**: Add a corresponding `Install-Plugin` call or other PowerShell commands to perform the same installation.
     -   **`Dockerfile`**: Add the same `git clone` and `COPY` commands to the `Dockerfile`.
+    -   **`Makefile`**
 
 5.  **Update Documentation and Health Checks**: This configuration uses a custom help system located in `nvim-config/doc/`. To add or update documentation for a plugin or feature, follow this process:
     -   **Create a help file**: Create a new `.txt` file in `nvim-config/doc/` (e.g., `nvim-config/doc/new-feature.txt`).
