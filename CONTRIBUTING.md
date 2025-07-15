@@ -1,6 +1,13 @@
 # Instructions for contributing
 
-**Important**: This repository is not a Neovim configuration itself. Rather, it is a blueprint and a set of installers (`install_on_mac_osx.sh`, `install_on_windows.ps1`, `Makefile`, and `Dockerfile`) that build a complete, ready-to-use Neovim environment. The sources for plugins is not stored here; it is cloned during the installation process.
+**Important**: This repository is not a Neovim configuration itself. Rather, it is a blueprint and a set of installers (`install_on_mac_osx.sh`, `install_on_windows.ps1`, and `Dockerfile`/`Makefile`) that build complete, ready-to-use Neovim environments. The sources for plugins is not stored here; it is cloned during the installation process.
+
+## Directory Structure
+- `nvim-config`: Base nvim-config for the user nvim installation this produces. Files here are copied directly, and other files are copied into the destination as well (from `pack` and via `git clone` calls.)
+- `pack`: Custom nvim packs. They are copied into the destination nvim-config during install. 
+- `pack/oathealth`: Place healthchecks here.
+- `Dockerfile`/`install_on_mac_osx.sh`/`install_on_windows.ps1`: Place `git clone` commands used to get other plugins here. Also put installation commands for depedencies.
+- `script/nvim-docker`: Script to launch nvim in a docker container.
 
 ## Guiding Principles
 
