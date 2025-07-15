@@ -201,6 +201,15 @@ Install-Plugin -PackName "nvim-treesitter" -PluginName "nvim-treesitter-textobje
 # ts-comments
 Install-Plugin -PackName "ts-comments" -PluginName "ts-comments.nvim" -RepoUrl "https://github.com/folke/ts-comments.nvim.git" -ConfigRelativePath "pack\ts-comments\start\ts-comments-config\plugin\ts-comments-config.lua"
 
+# markdown-preview
+Install-Plugin -PackName "markdown-preview" -PluginName "markdown-preview.nvim" -RepoUrl "https://github.com/iamcco/markdown-preview.nvim" -ConfigRelativePath "pack\markdown-preview\start\markdown-preview-config\plugin\markdown_preview_config.lua"
+
+$mkdpAppPath = Join-Path $nvimConfigPath "pack\markdown-preview\start\markdown-preview.nvim\app"
+if (Test-Path $mkdpAppPath) {
+    Write-Host "Running npm install for markdown-preview.nvim web app..."
+    npm install --prefix $mkdpAppPath
+}
+
 # OatVim Colorschemes
 Write-Host "Installing OatVim colorschemes..."
 $oatColorsSource = [System.IO.Path]::Combine($PSScriptRoot, "pack", "oat-colors")

@@ -116,6 +116,12 @@ RUN git clone https://github.com/folke/ts-comments.nvim.git /root/.config/nvim/p
 RUN mkdir -p /root/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin
 COPY pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua /root/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua
 
+# markdown-preview
+RUN mkdir -p /root/.config/nvim/pack/markdown-preview/start
+RUN git clone https://github.com/iamcco/markdown-preview.nvim /root/.config/nvim/pack/markdown-preview/start/markdown-preview.nvim
+RUN cd /root/.config/nvim/pack/markdown-preview/start/markdown-preview.nvim && npm install --legacy-peer-deps || true
+COPY pack/markdown-preview/start/markdown-preview-config/plugin/markdown_preview_config.lua /root/.config/nvim/pack/markdown-preview/start/markdown-preview-config/plugin/markdown_preview_config.lua
+
 # OatVim Colorschemes
 COPY pack/oat-colors /root/.config/nvim/pack/oat-colors
 

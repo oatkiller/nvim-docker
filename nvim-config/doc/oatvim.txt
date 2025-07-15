@@ -13,6 +13,7 @@ CONTENTS                                                      *oatvim-contents*
     -   LSP File Operations...........................|oatvim-lsp-file-operations|
     -   Linting/Formatting (none-ls)........................|oatvim-lint-format|
     -   File Explorer (nvim-tree).....................|oatvim-file-explorer|
+    -   Markdown Preview...............................|oatvim-markdown-preview|
     -   Treesitter............................................|oatvim-treesitter|
     -   Health Checks (oathealth)...............................|oatvim-health|
     -   Theming...........................................|oatvim-theming|

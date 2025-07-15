@@ -233,6 +233,15 @@ fi
 mkdir -p ~/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin
 cp ./pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua ~/.config/nvim/pack/ts-comments/start/ts-comments-config/plugin/ts-comments-config.lua
 
+# markdown-preview
+mkdir -p ~/.config/nvim/pack/markdown-preview/start
+if [ ! -d ~/.config/nvim/pack/markdown-preview/start/markdown-preview.nvim ]; then
+  git clone https://github.com/iamcco/markdown-preview.nvim ~/.config/nvim/pack/markdown-preview/start/markdown-preview.nvim
+  (cd ~/.config/nvim/pack/markdown-preview/start/markdown-preview.nvim && npm install)
+fi
+mkdir -p ~/.config/nvim/pack/markdown-preview/start/markdown-preview-config/plugin
+cp ./pack/markdown-preview/start/markdown-preview-config/plugin/markdown_preview_config.lua ~/.config/nvim/pack/markdown-preview/start/markdown-preview-config/plugin/markdown_preview_config.lua
+
 # OatVim Colorschemes
 echo "Installing OatVim colorschemes..."
 mkdir -p ~/.config/nvim/pack

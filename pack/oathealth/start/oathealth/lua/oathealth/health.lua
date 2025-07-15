@@ -11,6 +11,10 @@ local function check_plugin(name)
   return pcall(require, name)
 end
 
+local function check_command(cmd)
+  return vim.fn.exists(':' .. cmd) == 2
+end
+
 M.check = function()
   vim.health.start("oathealth: Custom Neovim Setup")
 
@@ -116,6 +120,11 @@ M.check = function()
     vim.health.ok("eslint_d is installed.")
   else
     vim.health.error("eslint_d is not installed.", "Run: npm install -g eslint_d")
+  end
+  if check_command("MarkdownPreview") then
+    vim.health.ok("markdown-preview.nvim command is available.")
+  else
+    vim.health.error("markdown-preview.nvim is not available.")
   end
 end
 
