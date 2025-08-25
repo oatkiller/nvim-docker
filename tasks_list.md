@@ -14,10 +14,6 @@ These tasks must be completed first as they address fundamental issues with the 
     -   **Priority**: High
     -   **Dependencies**: Task 3.
 
-3.  **[Task 2: Install Missing 'diff' Treesitter Parser](mdc:tasks/2_install_diff_parser.md)**
-    -   **Priority**: Medium
-    -   **Dependencies**: Task 3.
-
 4.  **[Task 4: Address Optional Dependency Warnings](mdc:tasks/4_address_optional_warnings.md)**
     -   **Priority**: Low
     -   **Dependencies**: Task 3.
