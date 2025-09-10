@@ -71,9 +71,17 @@ make checkhealth
 
 This will run Neovim's health checks inside the Docker container.
 
+## Multi-Architecture Support
+
+This Docker image supports both x86_64 (AMD64) and ARM64 architectures:
+
+- **Automatic Detection**: The Dockerfile automatically detects the target architecture and downloads the appropriate Neovim binary
+- **Multi-Platform Builds**: Use `make build-multi` to build for both architectures simultaneously
+- **Architecture-Specific Builds**: Use `make build-amd64` or `make build-arm64` for specific architectures
+
 ---
 
 **Note:**
-- The Dockerfile is configured for Apple Silicon (ARM64). If you are on x86-64, you may need to adjust the Neovim download URL in the Dockerfile.
-- All plugins and configuration are managed via the `pack` and `nvim-config` directories and are automatically set up during the Docker build.
+- The Docker image automatically detects and installs the correct Neovim binary for your architecture
+- All plugins and configuration are managed via the `pack` and `nvim-config` directories and are automatically set up during the Docker build
 - For more details on the structure and plugin management, see [CONTRIBUTING.md](CONTRIBUTING.md).

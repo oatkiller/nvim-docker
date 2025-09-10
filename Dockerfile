@@ -1,4 +1,5 @@
 ARG NVIM_CONFIG
+ARG TARGETARCH
 FROM ubuntu:24.04
 
 # Install dependencies
@@ -25,16 +26,22 @@ RUN npm install -g typescript-language-server typescript
 RUN npm install -g @tailwindcss/language-server vscode-langservers-extracted
 
 # -----------------------------------------------------------------------------
-# NOTE: We intentionally fetch the *ARM64* build of Neovim here.  This container
-# is designed to run on Apple-Silicon (M1/M2) Macs where the host Docker engine
-# executes aarch64/arm64 images natively.  If you plan to build/run this image
-# on an x86-64 host, swap the URL for the appropriate `nvim-linux64.tar.gz`
-# release instead.
+# Multi-architecture Neovim installation
+# Supports both x86_64 (amd64) and ARM64 (aarch64) architectures
 # -----------------------------------------------------------------------------
-# Install Neovim ARM64 version
-RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-arm64.tar.gz && \
-    tar xzf nvim-linux-arm64.tar.gz && \
-    mv nvim-linux-arm64 /opt/nvim && \
+# Install Neovim based on detected architecture
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "x86_64" ]; then \
+        curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz && \
+        tar xzf nvim-linux-x86_64.tar.gz && \
+        mv nvim-linux-x86_64 /opt/nvim; \
+    elif [ "$ARCH" = "aarch64" ]; then \
+        curl -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-arm64.tar.gz && \
+        tar xzf nvim-linux-arm64.tar.gz && \
+        mv nvim-linux-arm64 /opt/nvim; \
+    else \
+        echo "Unsupported architecture: $ARCH" && exit 1; \
+    fi && \
     ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
 
 # Copy Neovim config into container
